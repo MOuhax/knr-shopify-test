@@ -9,6 +9,58 @@
  */
 {
   "sections": {
+    "image_banner_4hK4aX": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_MCCJrh": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Bannière avec image",
+            "heading_size": "h1"
+          }
+        },
+        "text_a4PzA6": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Fournissez des détails à votre clientèle sur l’image/les images ou le contenu de la bannière du modèle.",
+            "text_style": "body"
+          }
+        },
+        "buttons_gNcYyq": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Texte du bouton",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Texte du bouton",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_MCCJrh",
+        "text_a4PzA6",
+        "buttons_gNcYyq"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Product_Image.png",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -25,6 +77,10 @@
         },
         "price": {
           "type": "price",
+          "settings": {}
+        },
+        "rating_JAYPYg": {
+          "type": "rating",
           "settings": {}
         },
         "variant_picker": {
@@ -49,8 +105,58 @@
           "type": "description",
           "settings": {}
         },
+        "collapsible_tab_eVzj7R": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Rangée réductible",
+            "icon": "none",
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible_tab_yRkt3j": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Rangée réductible",
+            "icon": "none",
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible_tab_YQ8mLd": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Rangée réductible",
+            "icon": "none",
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible_tab_gY6Ybm": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Rangée réductible",
+            "icon": "none",
+            "content": "",
+            "page": ""
+          }
+        },
+        "complementary_L9ihch": {
+          "type": "complementary",
+          "settings": {
+            "block_heading": "S’associe bien avec",
+            "make_collapsible_row": false,
+            "icon": "price_tag",
+            "product_list_limit": 10,
+            "products_per_page": 3,
+            "pagination_style": "counter",
+            "image_ratio": "portrait",
+            "enable_quick_add": false
+          }
+        },
         "share": {
           "type": "share",
+          "disabled": true,
           "settings": {
             "share_label": "Share"
           }
@@ -60,10 +166,16 @@
         "vendor",
         "title",
         "price",
+        "rating_JAYPYg",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
         "description",
+        "collapsible_tab_eVzj7R",
+        "collapsible_tab_yRkt3j",
+        "collapsible_tab_YQ8mLd",
+        "collapsible_tab_gY6Ybm",
+        "complementary_L9ihch",
         "share"
       ],
       "settings": {
@@ -71,19 +183,208 @@
         "color_scheme": "scheme-1",
         "media_size": "large",
         "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "stacked",
+        "media_fit": "cover",
+        "gallery_layout": "columns",
         "mobile_thumbnails": "hide",
         "media_position": "left",
         "image_zoom": "lightbox",
         "hide_variants": true,
         "enable_video_looping": false,
         "padding_top": 36,
-        "padding_bottom": 12
+        "padding_bottom": 80
+      }
+    },
+    "multicolumn_i7aFJ8": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_4b3xXc": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Product_Image_Container_a6403e74-4523-4e1d-bb91-aaf305878de7.png",
+            "title": "Colonne",
+            "text": "<p>Associez un texte à une image pour mettre en avant le produit, la collection ou l’article de blog de votre choix. Ajoutez des informations sur la disponibilité ou le style. Vous pouvez même fournir un avis.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_zbkwnC": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Product_Image_Container_2916b9c9-4e2a-4cf1-89e9-261ccc27b232.png",
+            "title": "Colonne",
+            "text": "<p>Associez un texte à une image pour mettre en avant le produit, la collection ou l’article de blog de votre choix. Ajoutez des informations sur la disponibilité ou le style. Vous pouvez même fournir un avis.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_nzyxi4": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Product_Image_Container_0525900b-f677-4f61-94dd-3d22e0fddeb2.png",
+            "title": "Colonne",
+            "text": "<p>Associez un texte à une image pour mettre en avant le produit, la collection ou l’article de blog de votre choix. Ajoutez des informations sur la disponibilité ou le style. Vous pouvez même fournir un avis.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_4b3xXc",
+        "column_zbkwnC",
+        "column_nzyxi4"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "How to use",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "Texte du bouton",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_qpQCHb": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_CNkcnJ": {
+          "type": "heading",
+          "settings": {
+            "heading": "Ce que disent nos clientes",
+            "heading_size": "h1"
+          }
+        },
+        "text_4Whk8m": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Des transformations visibles dès 4 semaines. Nos clientes témoignent d'une peau visiblement régénérée, plus ferme et lumineuse.</p>"
+          }
+        },
+        "text_kkm4pN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>J'utilise ce sérum depuis trois mois et la différence est saisissante. Mes rides d'expression se sont considérablement atténuées et mon teint a retrouvé une luminosité que je n'avais plus depuis des années. Une texture soyeuse qui pénètre instantanément. Je ne peux plus m'en passer.</p>"
+          }
+        },
+        "button_MgMAFT": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Texte du bouton",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_CNkcnJ",
+        "text_4Whk8m",
+        "text_kkm4pN",
+        "button_MgMAFT"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "collapsible_content_H9BMKy": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_n8CQFY": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Rangée réductible",
+            "icon": "none",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_zca4DL": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Rangée réductible",
+            "icon": "none",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_J8UPbK": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Rangée réductible",
+            "icon": "none",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_fXtmag": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Rangée réductible",
+            "icon": "none",
+            "row_content": "",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_n8CQFY",
+        "collapsible_row_zca4DL",
+        "collapsible_row_J8UPbK",
+        "collapsible_row_fXtmag"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "Questions fréquentes",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "",
+        "color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "featured_blog_cG6gUA": {
+      "type": "featured-blog",
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "blog": "news",
+        "post_limit": 4,
+        "heading": "Latest news",
+        "heading_size": "h1",
+        "columns_desktop": 4,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": true,
+        "color_scheme": "",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
@@ -99,10 +400,65 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "image_with_text_kYmwTP": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_HjCatT": {
+          "type": "heading",
+          "settings": {
+            "heading": "L'alliance de la science botanique et du luxe naturel pour une peau visiblement rajeunie en 4 semaines.",
+            "heading_size": "h1"
+          }
+        },
+        "text_gY8D9W": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Associez un texte à une image pour mettre en avant le produit, la collection ou l’article de blog de votre choix. Ajoutez des informations sur la disponibilité ou le style. Vous pouvez même fournir un avis.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_QfqJ44": {
+          "type": "button",
+          "settings": {
+            "button_label": "Texte du bouton",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_HjCatT",
+        "text_gY8D9W",
+        "button_QfqJ44"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Reinsurance_Image.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
+    "image_banner_4hK4aX",
     "main",
-    "related-products"
+    "multicolumn_i7aFJ8",
+    "rich_text_qpQCHb",
+    "collapsible_content_H9BMKy",
+    "featured_blog_cG6gUA",
+    "related-products",
+    "image_with_text_kYmwTP"
   ]
 }

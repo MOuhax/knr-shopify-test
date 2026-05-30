@@ -458,6 +458,10 @@
               "label": "Texte",
               "default": "Bienvenue dans notre boutique"
             },
+             "link_text": {
+              "label": "Link Text",
+              "default": "Obtenir l'offre"
+            },
             "text_alignment": {
               "label": "Alignement du texte",
               "options__1": {

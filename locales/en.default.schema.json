@@ -484,6 +484,10 @@
               "label": "Text",
               "default": "Welcome to our store"
             },
+            "link_text": {
+              "label": "Link Text",
+              "default": "Get the offer"
+            },
             "text_alignment": {
               "label": "Text alignment",
               "options__1": {

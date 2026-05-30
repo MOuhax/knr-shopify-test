@@ -38,20 +38,16 @@
             <span>{{ section.blocks.first.settings.text | escape }}</span>
            
              {%- if section.blocks.first.settings.link != blank and section.blocks.first.settings.link_text != blank -%}
-              <span>
-            <a
-              href="{{ section.blocks.first.settings.link }}"
-              class="announcement-bar__link link link--text focus-inset animate-arrow"
-            >
-          {%- endif -%}
+                <span>
+                    <a
+                      href="{{ section.blocks.first.settings.link }}"
+                      class="announcement-bar__link link link--text focus-inset animate-arrow"
+                    >
+                      {{ section.blocks.first.settings.link_text | escape }}
 
-          {{ section.blocks.first.settings.link_text | escape }}
-         
-         
-         {%- if section.blocks.first.settings.link != blank and section.blocks.first.settings.link_text != blank -%}
-            </a>
-            </span>
-          {%- endif -%}
+                    </a>
+              </span>
+             {%- endif -%}
 
           </p>
           
@@ -101,21 +97,30 @@
                   aria-label="{{ 'sections.header.announcement' | t }}"
                 >
                   {%- if block.settings.text != blank -%}
-                    {%- if block.settings.link != blank -%}
-                      <a
-                        href="{{ block.settings.link }}"
-                        class="announcement-bar__link link link--text focus-inset animate-arrow"
-                      >
-                    {%- endif -%}
-                    <p class="announcement-bar__message h5">
-                      <span>{{ block.settings.text | escape }}</span>
-                      {%- if block.settings.link != blank -%}
-                        {{- 'icon-arrow.svg' | inline_asset_content -}}
-                      {%- endif -%}
-                    </p>
-                    {%- if block.settings.link != blank -%}
-                      </a>
-                    {%- endif -%}
+                              
+
+
+                                        <p class="announcement-bar__message h5">
+                                <span>{{ block.settings.text | escape }}
+                                   
+                                </span>
+                              
+                                {%- if block.settings.link != blank and block.settings.link_text != blank -%}
+                                    <span>
+                                        <a
+                                          href="{{ block.settings.link }}"
+                                          class="announcement-bar__link link link--text focus-inset animate-arrow"
+                                        >
+                                          {{ block.settings.link_text | escape }}
+
+                                        </a>
+                                  </span>
+                                {%- endif -%}
+
+                              </p>
+
+                              
+                   
                   {%- endif -%}
                 </div>
               </div>
@@ -172,7 +177,7 @@
 
 {% schema %}
 {
-  "name": "t:sections.announcement-bar.name",
+  "name": "knr Announcement bar",
   "max_blocks": 12,
   "class": "announcement-bar-section",
   "enabled_on": {
@@ -264,7 +269,7 @@
   ],
   "presets": [
     {
-      "name": "t:sections.announcement-bar.presets.name",
+      "name": "knr Announcement bar",
       "blocks": [
         {
           "type": "announcement"

@@ -700,7 +700,7 @@
           "label": "Nombre d’articles"
         },
         "show_view_all": {
-          "label": "Bouton « Tout afficher »",
+          "label": "Bouton «Voir tous les articles »",
           "info": "Visible si le blog comprend plus d’articles que ceux affichés"
         },
         "show_image": {

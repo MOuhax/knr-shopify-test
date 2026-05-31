@@ -44,7 +44,7 @@
         -%}
           <a
             href="{{ section.settings.blog.url }}"
-            class="link underlined-link large-up-hide{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="link underlined-link small-hide medium-hide{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           >
             {{ 'sections.featured_blog.view_all' | t }}
           </a>
@@ -71,7 +71,7 @@
               {% render 'article-card',
                 blog: section.settings.blog,
                 article: article,
-                media_aspect_ratio: 1.66,
+                media_aspect_ratio: 1,
                 show_image: section.settings.show_image,
                 show_date: section.settings.show_date,
                 show_author: section.settings.show_author,
@@ -113,7 +113,7 @@
                     {%- endif -%}
                     <div class="card__content">
                       <div class="card__information">
-                        <h3 class="card__heading h2">
+                        <h3 class="card__heading h4">
                           {{ 'sections.featured_blog.onboarding_title' | t }}
                         </h3>
                         <p class="article-card__excerpt rte-width">
@@ -124,7 +124,7 @@
                   </div>
                   <div class="card__content">
                     <div class="card__information">
-                      <h3 class="card__heading h2">
+                      <h3 class="card__heading h4">
                         {{ 'sections.featured_blog.onboarding_title' | t }}
                       </h3>
                       <p class="article-card__excerpt rte-width">
@@ -139,6 +139,7 @@
         {%- endif -%}
       </ul>
       {%- if posts_exceed_limit -%}
+        
 
           <div class="slider-scrollbar-container flex justify-center items-center  md:hidden {% if hide_mobile_slider %} hidden {% endif %}">
   <div class="slider-scrollbar-track">
@@ -150,7 +151,7 @@
 
     {%- if section.settings.show_view_all and section.settings.post_limit < section.settings.blog.articles_count -%}
       <div
-        class="blog__view-all center small-hide medium-hide{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        class="blog__view-all center large-up-hide{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         {% if settings.animations_reveal_on_scroll %}
           data-cascade
         {% endif %}
@@ -158,7 +159,7 @@
         <a
           href="{{ section.settings.blog.url }}"
           id="ViewAll-{{ section.id }}"
-          class="blog__button button"
+          class="link underlined-link scroll-trigger animate--slide-in"
           aria-labelledby="ViewAll-{{ section.id }} SectionHeading-{{ section.id }}"
         >
           {{ 'sections.featured_blog.view_all' | t }}

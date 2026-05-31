@@ -48,12 +48,13 @@
 
 .article-card .card__heading {
   margin-bottom: 0.6rem;
+      max-width: 65%;
 }
 
 .blog-articles .article-card .card__information,
 .blog__posts .article-card .card__information {
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 0rem;
+  padding-right: 1rem;
 }
 
 .article-card__info {
@@ -127,7 +128,9 @@
     padding-bottom: 40.7rem;
   }
 }
-
+.blog__view-all {
+  margin-top: 3rem;
+  }
 /* check for flexbox gap in older Safari versions */
 @supports not (inset: 10px) {
   .articles-wrapper.grid {

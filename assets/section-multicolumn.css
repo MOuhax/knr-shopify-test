@@ -12,7 +12,7 @@
 
 @media screen and (max-width: 749px) {
   .multicolumn .title-wrapper-with-link {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
   }
 }
 
@@ -93,8 +93,8 @@
   margin-right: 2.5rem;
 }
 
-.multicolumn-card__info > :nth-child(2) {
-  margin-top: 1rem;
+.multicolumn-card__info .inline-richtext {
+    margin: 1.6rem 0px;
 }
 
 .multicolumn-list__item.center .media--adapt,
@@ -148,12 +148,11 @@
 
 .multicolumn-card__info {
   padding: 2.5rem;
+  padding-bottom: 0rem;
 }
 
 .background-none .multicolumn-card__info {
-  padding-top: 0;
-  padding-left: 0;
-  padding-right: 0;
+  padding: 1.6rem;
 }
 
 .background-none .slider .multicolumn-card__info {
@@ -161,7 +160,7 @@
 }
 
 .background-none .multicolumn-card__image-wrapper + .multicolumn-card__info {
-  padding-top: 2.5rem;
+  padding-top: 2.4rem;
 }
 
 .background-none .slider .multicolumn-card__info {
@@ -169,17 +168,17 @@
 }
 
 .background-none .slider .multicolumn-card__image-wrapper + .multicolumn-card__info {
-  padding-left: 1.5rem;
+  padding-left: 2.4rem;
 }
 
 .background-none .multicolumn-list:not(.slider) .center .multicolumn-card__info {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
 }
 
 @media screen and (max-width: 749px) {
   .background-none .slider .multicolumn-card__info {
-    padding-bottom: 1rem;
+    padding-bottom: 3.7rem;
   }
 
   .multicolumn.background-none .slider.slider--mobile {
@@ -188,15 +187,11 @@
 }
 
 @media screen and (min-width: 750px) {
-  .background-none .multicolumn-card__image-wrapper {
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
-  }
 
   .background-none .multicolumn-list .multicolumn-card__info,
   .background-none .multicolumn-list:not(.slider) .center .multicolumn-card__info {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
   }
 }
 
@@ -230,4 +225,41 @@
   .multicolumn-list__item--empty {
     display: list-item;
   }
+}
+
+
+/* scroll bar option */
+
+.slider-scrollbar-container {
+  display: none; 
+}
+
+@media screen and (max-width: 749px) {
+  .slider-scrollbar-container {
+    display: flex;
+  }
+}
+ .slider-scrollbar-container {
+  padding: 2px 0;
+}
+
+.slider-scrollbar-track {
+ position: relative;
+    width: 100px;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.15);
+    margin: auto;
+}
+.slider-scrollbar-track .slider-scrollbar-thumb {
+    display: block;
+}
+.slider-scrollbar-thumb {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #000;
+    transition: left .15s ease;
+    cursor: grab;
+    display: block;
 }

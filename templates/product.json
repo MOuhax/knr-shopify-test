@@ -194,6 +194,56 @@
         "padding_bottom": 80
       }
     },
+    "image_banner_hFfz9C": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_twTy7L": {
+          "type": "heading",
+          "settings": {
+            "heading": "Fusionnant l'huile de rosier muscat, le rétinol végétal et l'extrait de cactus, notre sérum pénètre en profondeur pour stimuler le renouvellement cellulaire, atténuer les rides et redonner à la peau son éclat et sa fermeté naturels.",
+            "heading_size": "h2"
+          }
+        },
+        "text_pTD4YL": {
+          "type": "text",
+          "settings": {
+            "text": "Sophie M.",
+            "text_style": "body"
+          }
+        },
+        "buttons_ik3NFT": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Texte du bouton",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Texte du bouton",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_twTy7L",
+        "text_pTD4YL",
+        "buttons_ik3NFT"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Product_Image_9774c916-cbd1-434a-955a-05986cb628cd.png",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-right",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
     "multicolumn_i7aFJ8": {
       "type": "multicolumn",
       "blocks": {
@@ -201,8 +251,9 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/Product_Image_Container_a6403e74-4523-4e1d-bb91-aaf305878de7.png",
-            "title": "Colonne",
-            "text": "<p>Associez un texte à une image pour mettre en avant le produit, la collection ou l’article de blog de votre choix. Ajoutez des informations sur la disponibilité ou le style. Vous pouvez même fournir un avis.</p>",
+            "title": "Découvrir",
+            "sub_title": "01",
+            "text": "<p>Concentré de pureté active. Huile végétale aux propriétés anti-oxydantes puissantes pour un éclat retrouvé.</p>",
             "link_label": "",
             "link": ""
           }
@@ -211,8 +262,9 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/Product_Image_Container_2916b9c9-4e2a-4cf1-89e9-261ccc27b232.png",
-            "title": "Colonne",
-            "text": "<p>Associez un texte à une image pour mettre en avant le produit, la collection ou l’article de blog de votre choix. Ajoutez des informations sur la disponibilité ou le style. Vous pouvez même fournir un avis.</p>",
+            "title": "Découvrir",
+            "sub_title": "02",
+            "text": "<p>Éclat et uniformité retrouvés. Cible les taches et les irrégularités de grain de peau.</p>",
             "link_label": "",
             "link": ""
           }
@@ -221,8 +273,9 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/Product_Image_Container_0525900b-f677-4f61-94dd-3d22e0fddeb2.png",
-            "title": "Colonne",
-            "text": "<p>Associez un texte à une image pour mettre en avant le produit, la collection ou l’article de blog de votre choix. Ajoutez des informations sur la disponibilité ou le style. Vous pouvez même fournir un avis.</p>",
+            "title": "Découvrir",
+            "sub_title": "03",
+            "text": "<p>Fermeté et nutrition intense. Répare la barrière cutanée et lisse les contours du visage.</p>",
             "link_label": "",
             "link": ""
           }
@@ -236,19 +289,19 @@
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "How to use",
-        "heading_size": "h1",
+        "heading_size": "h2",
         "image_width": "full",
         "image_ratio": "adapt",
-        "button_label": "Texte du bouton",
+        "button_label": "",
         "button_link": "",
         "columns_desktop": 3,
         "column_alignment": "left",
-        "background_style": "primary",
+        "background_style": "none",
         "color_scheme": "",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 100
       }
     },
     "rich_text_qpQCHb": {
@@ -305,48 +358,58 @@
     "collapsible_content_H9BMKy": {
       "type": "collapsible-content",
       "blocks": {
-        "collapsible_row_n8CQFY": {
+        "collapsible_row_pPRiWY": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Rangée réductible",
+            "heading": "Comment utiliser ?",
             "icon": "none",
-            "row_content": "",
+            "row_content": "<p>Appliquez 3 à 5 gouttes le soir sur visage et cou préalablement nettoyés. Massez délicatement en mouvements ascendants jusqu'à absorption complète. Peut s'utiliser seul ou sous votre crème habituelle.</p>",
             "page": ""
           }
         },
         "collapsible_row_zca4DL": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Rangée réductible",
+            "heading": "Quand voir les effets ?",
             "icon": "none",
-            "row_content": "",
+            "row_content": "<p>Appliquez 3 à 5 gouttes le soir sur visage et cou préalablement nettoyés. Massez délicatement en mouvements ascendants jusqu'à absorption complète. Peut s'utiliser seul ou sous votre crème habituelle.</p>",
             "page": ""
           }
         },
         "collapsible_row_J8UPbK": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Rangée réductible",
+            "heading": "Convient-il à tous ?",
             "icon": "none",
-            "row_content": "",
+            "row_content": "<p>Appliquez 3 à 5 gouttes le soir sur visage et cou préalablement nettoyés. Massez délicatement en mouvements ascendants jusqu'à absorption complète. Peut s'utiliser seul ou sous votre crème habituelle.</p>",
             "page": ""
           }
         },
         "collapsible_row_fXtmag": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Rangée réductible",
+            "heading": "Est-il naturel ?",
             "icon": "none",
-            "row_content": "",
+            "row_content": "<p>Appliquez 3 à 5 gouttes le soir sur visage et cou préalablement nettoyés. Massez délicatement en mouvements ascendants jusqu'à absorption complète. Peut s'utiliser seul ou sous votre crème habituelle.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_cMHRjM": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Peut-on l'associer ?",
+            "icon": "none",
+            "row_content": "<p>Appliquez 3 à 5 gouttes le soir sur visage et cou préalablement nettoyés. Massez délicatement en mouvements ascendants jusqu'à absorption complète. Peut s'utiliser seul ou sous votre crème habituelle.</p>",
             "page": ""
           }
         }
       },
       "block_order": [
-        "collapsible_row_n8CQFY",
+        "collapsible_row_pPRiWY",
         "collapsible_row_zca4DL",
         "collapsible_row_J8UPbK",
-        "collapsible_row_fXtmag"
+        "collapsible_row_fXtmag",
+        "collapsible_row_cMHRjM"
       ],
       "name": "t:sections.collapsible_content.presets.name",
       "settings": {
@@ -360,8 +423,8 @@
         "open_first_collapsible_row": false,
         "image_ratio": "adapt",
         "desktop_layout": "image_second",
-        "padding_top": 80,
-        "padding_bottom": 80
+        "padding_top": 100,
+        "padding_bottom": 100
       }
     },
     "featured_blog_cG6gUA": {
@@ -454,6 +517,7 @@
   "order": [
     "image_banner_4hK4aX",
     "main",
+    "image_banner_hFfz9C",
     "multicolumn_i7aFJ8",
     "rich_text_qpQCHb",
     "collapsible_content_H9BMKy",

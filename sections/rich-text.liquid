@@ -87,7 +87,29 @@
                   </a>
                 {%- endif -%}
               </div>
-          {%- endcase -%}
+         
+               {%- when 'image' -%}
+  {%- if block.settings.image != blank -%}
+    <div
+      class="rich-text__image{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+      {{ block.shopify_attributes }}
+      {% if settings.animations_reveal_on_scroll %}
+        data-cascade
+        style="--animation-order: {{ forloop.index }};"
+      {% endif %}
+    >
+      {{
+        block.settings.image
+        | image_url: width: block.settings.image_width
+        | image_tag:
+          width: block.settings.image_width,
+          loading: 'lazy',
+          style: 'max-width: 100%; height: auto;'
+      }}
+    </div>
+  {%- endif -%}
+         
+            {%- endcase -%}
         {%- endfor -%}
       </div>
     </div>
@@ -333,7 +355,35 @@
           "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_2.label"
         }
       ]
+    },
+    {
+  "type": "image",
+  "name": "Image",
+  "limit": 3,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 100,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "label": "Image width",
+      "default": 400
+    },
+    {
+      "type": "checkbox",
+      "id": "rounded",
+      "label": "Rounded corners",
+      "default": false
     }
+  ]
+}
   ],
   "presets": [
     {

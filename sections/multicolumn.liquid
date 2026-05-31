@@ -3,14 +3,14 @@
 
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+   padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.64 | round: 0 }}px;
   }
 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 1.20 | round: 0 }}px;
     }
   }
 {%- endstyle -%}
@@ -119,8 +119,11 @@
                 </div>
               {%- endif -%}
               <div class="multicolumn-card__info">
+                {%- if block.settings.sub_title != blank -%}
+                  <p class="sub_title">{{ block.settings.sub_title }}</p>
+                {%- endif -%}
                 {%- if block.settings.title != blank -%}
-                  <h3 class="inline-richtext">{{ block.settings.title }}</h3>
+                  <h4 class="inline-richtext">{{ block.settings.title }}</h4>
                 {%- endif -%}
                 {%- if block.settings.text != blank -%}
                   <div class="rte">{{ block.settings.text }}</div>
@@ -147,30 +150,13 @@
       </ul>
 
       {%- if show_mobile_slider -%}
-        <div class="slider-buttons large-up-hide">
-          <button
-            type="button"
-            class="slider-button slider-button--prev"
-            name="previous"
-            aria-label="{{ 'general.slider.previous_slide' | t }}"
-          >
-            <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
-          </button>
-          <div class="slider-counter caption">
-            <span class="slider-counter--current">1</span>
-            <span aria-hidden="true"> / </span>
-            <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-            <span class="slider-counter--total">{{ section.blocks.size }}</span>
-          </div>
-          <button
-            type="button"
-            class="slider-button slider-button--next"
-            name="next"
-            aria-label="{{ 'general.slider.next_slide' | t }}"
-          >
-            <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
-          </button>
-        </div>
+      
+
+        <div class="slider-scrollbar-container flex justify-center items-center  md:hidden {% if hide_mobile_slider %} hidden {% endif %}">
+  <div class="slider-scrollbar-track">
+    <div class="slider-scrollbar-thumb" ></div>
+  </div>
+</div>
       {%- endif -%}
     </slider-component>
     <div class="center{% if show_mobile_slider %} small-hide medium-hide{% endif %}">
@@ -192,7 +178,7 @@
 
 {% schema %}
 {
-  "name": "t:sections.multicolumn.name",
+  "name": "knr multi comulmn",
   "class": "section",
   "tag": "section",
   "disabled_on": {
@@ -382,7 +368,7 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 100,
+      "max": 120,
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
@@ -392,7 +378,7 @@
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 100,
+      "max": 120,
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
@@ -414,6 +400,12 @@
           "id": "title",
           "default": "t:sections.multicolumn.blocks.column.settings.title.default",
           "label": "t:sections.multicolumn.blocks.column.settings.title.label"
+        },
+         {
+          "type": "text",
+          "id": "sub_title",
+          "default": "sub title",
+          "label": "sub title"
         },
         {
           "type": "richtext",
@@ -437,7 +429,7 @@
   ],
   "presets": [
     {
-      "name": "t:sections.multicolumn.presets.name",
+      "name": "knr multicolumn",
       "blocks": [
         {
           "type": "column"

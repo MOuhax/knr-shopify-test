@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-search" viewBox="0 0 18 19">
+  <path
+    stroke="currentColor"
+    stroke-width="1.2"
+    stroke-linecap="square"
+    stroke-linejoin="round"
+    d="M16.5 16.5L12.3 12.3M14.1667 7.83333C14.1667 11.2771 11.3771 14.0667 7.93333 14.0667C4.48959 14.0667 1.7 11.2771 1.7 7.83333C1.7 4.38959 4.48959 1.6 7.93333 1.6C11.3771 1.6 14.1667 4.38959 14.1667 7.83333Z"
+  />
+</svg>

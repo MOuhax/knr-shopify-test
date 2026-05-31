@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-cart" viewBox="0 0 40 40">
+  <!-- Bag body: rectangle with rounded bottom -->
+  <path
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="square"
+    stroke-linejoin="round"
+    d="
+      M11 15
+      H29
+      V31 C29 32.1 28.1 33 27 33
+      H13 C11.9 33 11 32.1 11 31
+      Z
+    "
+  />
+  <!-- Handle arch -->
+  <path
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="square"
+    stroke-linejoin="round"
+    d="M15.5 15 C15.5 12.5 17 10 20 10 C23 10 24.5 12.5 24.5 15"
+  />
+</svg>

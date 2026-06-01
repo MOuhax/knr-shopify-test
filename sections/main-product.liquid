@@ -523,6 +523,8 @@
                     </p>
                   </div>
                 {%- endif -%}
+              {%- when 'knr_upsell_cross_sell' -%}
+                {% render 'knr-upsell-cross-sell', block: block, section_id: section.id %}
               {%- when 'complementary' -%}
                 <product-recommendations
                   class="complementary-products quick-add-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
@@ -1189,6 +1191,30 @@
         {
           "type": "paragraph",
           "content": "t:sections.main-product.blocks.rating.settings.paragraph.content"
+        }
+      ]
+    },
+    {
+      "type": "knr_upsell_cross_sell",
+      "name": "KNR upsell and cross-sell",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "COMPLÉTEZ VOTRE RITUEL"
+        },
+        {
+          "type": "product_list",
+          "id": "products",
+          "label": "Products",
+          "limit": 12
+        },
+        {
+          "type": "checkbox",
+          "id": "show_price",
+          "label": "Show price",
+          "default": true
         }
       ]
     },

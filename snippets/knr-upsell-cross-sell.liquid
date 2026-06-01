@@ -1,0 +1,265 @@
+{% comment %}
+  Renders the KNR upsell and cross-sell product carousel on the main product page.
+
+  Accepts:
+  - block: {Object} Section block object
+  - section_id: {String} Section ID
+{% endcomment %}
+
+{%- liquid
+  assign products = block.settings.products
+  assign carousel_id = 'KnrUpsellCrossSell-' | append: section_id | append: '-' | append: block.id
+-%}
+
+{%- if products != blank -%}
+  <div class="knr-upsell-cross-sell" id="{{ carousel_id }}" {{ block.shopify_attributes }}>
+    <div class="knr-upsell-cross-sell__header">
+      <h2 class="knr-upsell-cross-sell__heading">{{ block.settings.heading | escape }}</h2>
+      <button
+        class="knr-upsell-cross-sell__next"
+        type="button"
+        aria-label="Next products"
+        data-knr-upsell-next="{{ carousel_id }}"
+      >
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </button>
+    </div>
+
+    <div class="knr-upsell-cross-sell__track" data-knr-upsell-track="{{ carousel_id }}">
+      {%- for item_product in products -%}
+        {%- liquid
+          assign item_variant = item_product.selected_or_first_available_variant
+          assign item_image = item_product.featured_media.preview_image | default: item_product.featured_image
+          assign item_form_id = 'knr-upsell-form-' | append: section_id | append: '-' | append: block.id | append: '-' | append: item_product.id
+        -%}
+        <article class="knr-upsell-cross-sell__card">
+          <div class="knr-upsell-cross-sell__media">
+            <a class="knr-upsell-cross-sell__image-link" href="{{ item_product.url }}" aria-label="{{ item_product.title | escape }}">
+              {%- if item_image != blank -%}
+                <img
+                  src="{{ item_image | image_url: width: 640 }}"
+                  srcset="
+                    {{ item_image | image_url: width: 320 }} 320w,
+                    {{ item_image | image_url: width: 480 }} 480w,
+                    {{ item_image | image_url: width: 640 }} 640w
+                  "
+                  sizes="(min-width: 990px) 320px, 42vw"
+                  alt="{{ item_image.alt | default: item_product.title | escape }}"
+                  loading="lazy"
+                  width="{{ item_image.width }}"
+                  height="{{ item_image.height }}"
+                >
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg knr-upsell-cross-sell__placeholder' }}
+              {%- endif -%}
+            </a>
+
+            {%- if item_variant != blank -%}
+              {%- form 'product', item_product, id: item_form_id, class: 'knr-upsell-cross-sell__form' -%}
+                <input type="hidden" name="id" value="{{ item_variant.id }}">
+                <button
+                  class="knr-upsell-cross-sell__add"
+                  type="submit"
+                  name="add"
+                  aria-label="Add {{ item_product.title | escape }} to cart"
+                  {% unless item_variant.available %}
+                    disabled
+                  {% endunless %}
+                >
+                  <span aria-hidden="true">+</span>
+                </button>
+              {%- endform -%}
+            {%- endif -%}
+          </div>
+
+          <div class="knr-upsell-cross-sell__meta">
+            <a class="knr-upsell-cross-sell__title" href="{{ item_product.url }}">
+              {{ item_product.title | escape }}
+            </a>
+            {%- if block.settings.show_price -%}
+              <span class="knr-upsell-cross-sell__price">
+                {{ item_product.price | money }}
+              </span>
+            {%- endif -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <style>
+    #{{ carousel_id }} {
+      margin: 3rem 0;
+      overflow: hidden;
+    }
+
+    #{{ carousel_id }} .knr-upsell-cross-sell__header {
+      align-items: center;
+      display: flex;
+      gap: 1.6rem;
+      justify-content: space-between;
+      margin-bottom: 2.4rem;
+    }
+
+    #{{ carousel_id }} .knr-upsell-cross-sell__heading {
+      color: rgb(var(--color-foreground));
+      font-size: clamp(2rem, 2.6vw, 2.6rem);
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1.15;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    #{{ carousel_id }} .knr-upsell-cross-sell__next {
+      align-items: center;
+      background: transparent;
+      border: 0;
+      color: rgb(var(--color-foreground));
+      cursor: pointer;
+      display: inline-flex;
+      flex: 0 0 auto;
+      height: 4.4rem;
+      justify-content: center;
+      padding: 0;
+      width: 4.4rem;
+    }
+
+    #{{ carousel_id }} .knr-upsell-cross-sell__next .icon {
+      height: 2rem;
+      transform: rotate(-90deg);
+      width: 2rem;
+    }
+
+    #{{ carousel_id }} .knr-upsell-cross-sell__track {
+      display: flex;
+      gap: 1.6rem;
+      margin: 0;
+      overflow-x: auto;
+      padding: 0 0 0.4rem;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    #{{ carousel_id }} .knr-upsell-cross-sell__track::-webkit-scrollbar {
+      display: none;
+    }
+
+    #{{ carousel_id }} .knr-upsell-cross-sell__card {
+      flex: 0 0 min(42vw, 32rem);
+      min-width: 0;
+      position: relative;
+      scroll-snap-align: start;
+    }
+
+    #{{ carousel_id }} .knr-upsell-cross-sell__media {
+      aspect-ratio: 0.76;
+      background: rgba(var(--color-foreground), 0.04);
+      overflow: hidden;
+      position: relative;
+    }
+
+    #{{ carousel_id }} .knr-upsell-cross-sell__image-link {
+      display: block;
+      height: 100%;
+      text-decoration: none;
+      width: 100%;
+    }
+
+    #{{ carousel_id }} .knr-upsell-cross-sell__image-link img,
+    #{{ carousel_id }} .knr-upsell-cross-sell__placeholder {
+      display: block;
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    #{{ carousel_id }} .knr-upsell-cross-sell__form {
+      bottom: 1.4rem;
+      left: 1.6rem;
+      margin: 0;
+      position: absolute;
+      z-index: 2;
+    }
+
+    #{{ carousel_id }} .knr-upsell-cross-sell__add {
+      align-items: center;
+      background: rgb(var(--color-background));
+      border: 0;
+      color: rgb(var(--color-foreground));
+      cursor: pointer;
+      display: inline-flex;
+      font-size: 3rem;
+      font-weight: 400;
+      height: 3.2rem;
+      justify-content: center;
+      line-height: 1;
+      padding: 0 0 0.2rem;
+      width: 3.2rem;
+    }
+
+    #{{ carousel_id }} .knr-upsell-cross-sell__add:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+    }
+
+    #{{ carousel_id }} .knr-upsell-cross-sell__meta {
+      align-items: start;
+      display: grid;
+      gap: 1.2rem;
+      grid-template-columns: minmax(0, 1fr) auto;
+      padding: 1.4rem 0 0;
+    }
+
+    #{{ carousel_id }} .knr-upsell-cross-sell__title,
+    #{{ carousel_id }} .knr-upsell-cross-sell__price {
+      color: rgb(var(--color-foreground));
+      font-size: clamp(1.6rem, 2vw, 2rem);
+      line-height: 1.2;
+      text-decoration: none;
+    }
+
+    #{{ carousel_id }} .knr-upsell-cross-sell__title {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    #{{ carousel_id }} .knr-upsell-cross-sell__price {
+      white-space: nowrap;
+    }
+
+    @media screen and (max-width: 749px) {
+      #{{ carousel_id }} {
+        margin: 2.4rem 0;
+      }
+
+      #{{ carousel_id }} .knr-upsell-cross-sell__header {
+        margin-bottom: 1.8rem;
+      }
+
+      #{{ carousel_id }} .knr-upsell-cross-sell__card {
+        flex-basis: 72%;
+      }
+    }
+  </style>
+
+  <script>
+    (() => {
+      const root = document.getElementById({{ carousel_id | json }});
+      if (!root) return;
+
+      const track = root.querySelector('[data-knr-upsell-track="{{ carousel_id }}"]');
+      const next = root.querySelector('[data-knr-upsell-next="{{ carousel_id }}"]');
+      if (!track || !next) return;
+
+      next.addEventListener('click', () => {
+        const card = track.querySelector('.knr-upsell-cross-sell__card');
+        const distance = card ? card.offsetWidth + 16 : track.clientWidth;
+        track.scrollBy({ left: distance, behavior: 'smooth' });
+      });
+    })();
+  </script>
+{%- endif -%}

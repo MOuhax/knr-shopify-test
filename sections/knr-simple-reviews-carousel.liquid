@@ -1,0 +1,343 @@
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.mobile_padding_top }}px;
+    padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+  }
+
+  .knr-simple-reviews-{{ section.id }} {
+    background: rgb(var(--color-background));
+  }
+
+  .knr-simple-reviews-{{ section.id }} .knr-simple-reviews__inner {
+    max-width: {{ section.settings.content_width }}px;
+    margin: 0 auto;
+    text-align: center;
+  }
+.knr-simple-reviews__inner {
+    max-width: 97rem;
+}
+  .knr-simple-reviews-{{ section.id }} .knr-simple-reviews__slider {
+    display: flex;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    overflow-x: hidden;
+    pointer-events: none;
+    touch-action: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: auto;
+  }
+
+  .knr-simple-reviews-{{ section.id }} .knr-simple-reviews__slide {
+    width: 100%;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+
+  .knr-simple-reviews-{{ section.id }} .knr-simple-reviews__rating {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-bottom: 56px;
+    color: #b9a47d;
+    font-size: 15px;
+    line-height: 1;
+  }
+
+  .knr-simple-reviews-{{ section.id }} .knr-simple-reviews__stars {
+    display: inline-flex;
+    gap: 0.2rem;
+    letter-spacing: 0;
+  }
+
+  .knr-simple-reviews-{{ section.id }} .knr-simple-reviews__author {
+    color: #b9a47d;
+    font-size: 15px;
+    line-height: 1;
+  }
+
+  .knr-simple-reviews-{{ section.id }} .knr-simple-reviews__quote {
+    margin: 0 auto;
+    color: rgb(var(--color-foreground));
+    font-size: {{ section.settings.mobile_quote_size }}px;
+    line-height: 1.15;
+    letter-spacing: 0;
+  }
+
+  .knr-simple-reviews-{{ section.id }} .knr-simple-reviews__quote p {
+    margin: 0;
+  }
+
+  .knr-simple-reviews-{{ section.id }} .slider-buttons {
+    gap: 38px;
+    margin-top: 72px;
+  }
+
+  .knr-simple-reviews-{{ section.id }} .slider-button {
+    width: 32px;
+    height: 32px;
+    color: rgb(var(--color-foreground));
+  }
+
+  .knr-simple-reviews-{{ section.id }} .slider-button[disabled] {
+    opacity: 0.35;
+  }
+
+  .knr-simple-reviews-{{ section.id }} .slider-button .svg-wrapper {
+    width: 14px;
+    height: 14px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .knr-simple-reviews-{{ section.id }} .knr-simple-reviews__slider {
+      overflow-x: auto;
+      pointer-events: auto;
+      touch-action: pan-x pan-y;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    .knr-simple-reviews-{{ section.id }} .knr-simple-reviews__quote {
+      font-size: {{ section.settings.quote_size }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="knr-simple-reviews knr-simple-reviews-{{ section.id }} color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="{% unless section.settings.full_width %}page-width{% endunless %}">
+    <div class="knr-simple-reviews__inner{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <slider-component class="knr-simple-reviews__component">
+        <ul
+          id="Slider-{{ section.id }}"
+          class="knr-simple-reviews__slider slider slider--everywhere"
+          role="list"
+          aria-label="{{ section.settings.accessibility_label | escape }}"
+        >
+          {%- for block in section.blocks -%}
+            <li
+              id="Slide-{{ section.id }}-{{ forloop.index }}"
+              class="knr-simple-reviews__slide slider__slide"
+              {{ block.shopify_attributes }}
+            >
+              {%- if block.settings.show_rating -%}
+                <div class="knr-simple-reviews__rating">
+                  <span class="knr-simple-reviews__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
+                    {%- for i in (1..5) -%}
+                      {%- if i <= block.settings.rating -%}
+                        <span aria-hidden="true">&#9733;</span>
+                      {%- else -%}
+                        <span aria-hidden="true">&#9734;</span>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </span>
+                  {%- if block.settings.author != blank -%}
+                    <span class="knr-simple-reviews__author">{{ block.settings.author | escape }}</span>
+                  {%- endif -%}
+                </div>
+              {%- elsif block.settings.author != blank -%}
+                <div class="knr-simple-reviews__rating">
+                  <span class="knr-simple-reviews__author">{{ block.settings.author | escape }}</span>
+                </div>
+              {%- endif -%}
+
+              {%- if block.settings.quote != blank -%}
+                <div class="knr-simple-reviews__quote rte">
+                  {{ block.settings.quote }}
+                </div>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        <div class="slider-buttons">
+          <button
+            type="button"
+            class="slider-button slider-button--prev"
+            name="previous"
+            aria-label="{{ 'general.slider.previous_slide' | t }}"
+          >
+            <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+          </button>
+          <button
+            type="button"
+            class="slider-button slider-button--next"
+            name="next"
+            aria-label="{{ 'general.slider.next_slide' | t }}"
+          >
+            <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+          </button>
+        </div>
+      </slider-component>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "KNR reviews carousel",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 640,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1380
+    },
+    {
+      "type": "text",
+      "id": "accessibility_label",
+      "label": "Carousel accessibility label",
+      "default": "Customer reviews"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "quote_size",
+      "min": 24,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "label": "Quote size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "mobile_quote_size",
+      "min": 22,
+      "max": 44,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile quote size",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop padding top",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop padding bottom",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile padding top",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile padding bottom",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Show rating",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Clara T."
+        },
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Quote",
+          "default": "<p>J'utilise ce serum depuis trois mois et la difference est saisissante. Mes rides d'expression se sont considerablement attenuees et mon teint a retrouve une luminosite que je n'avais plus depuis des annees. Une texture soyeuse qui penetre instantanement. Je ne peux plus m'en passer.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "KNR reviews carousel",
+      "blocks": [
+        {
+          "type": "review"
+        },
+        {
+          "type": "review"
+        },
+        {
+          "type": "review"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

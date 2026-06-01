@@ -1,0 +1,481 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.mobile_padding_top }}px;
+    padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+  }
+
+  .knr-before-after-{{ section.id }} {
+    --knr-ba-position: {{ section.settings.initial_position }}%;
+    --knr-ba-frame-width: 100vw;
+    --knr-ba-height-mobile: {{ section.settings.mobile_height }}px;
+    --knr-ba-height-desktop: {{ section.settings.desktop_height }}px;
+    --knr-ba-max-width: {{ section.settings.max_width | divided_by: 10.0 }}rem;
+    position: relative;
+  }
+
+  .knr-before-after-{{ section.id }} .knr-before-after__inner {
+    max-width: var(--knr-ba-max-width);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .knr-before-after-{{ section.id }} .knr-before-after__inner--full-width {
+    max-width: none;
+  }
+
+  .knr-before-after-{{ section.id }} .knr-before-after__heading {
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+  }
+
+  .knr-before-after-{{ section.id }} .knr-before-after__text {
+    margin-bottom: 3.2rem;
+  }
+
+  .knr-before-after-{{ section.id }} .knr-before-after__frame {
+    position: relative;
+    min-height: var(--knr-ba-height-mobile);
+    overflow: hidden;
+    line-height: 0;
+    background: rgba(var(--color-foreground), 0.04);
+  }
+
+  .knr-before-after-{{ section.id }} .knr-before-after__image,
+  .knr-before-after-{{ section.id }} .knr-before-after__placeholder {
+    display: block;
+    width: 100%;
+    height: var(--knr-ba-height-mobile);
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .knr-before-after-{{ section.id }} .knr-before-after__before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: var(--knr-ba-position);
+    overflow: hidden;
+    z-index: 2;
+  }
+
+  .knr-before-after-{{ section.id }} .knr-before-after__before .knr-before-after__image,
+  .knr-before-after-{{ section.id }} .knr-before-after__before .knr-before-after__placeholder {
+    position: absolute;
+    inset: 0;
+    width: var(--knr-ba-frame-width);
+    max-width: none;
+  }
+
+  .knr-before-after-{{ section.id }} .knr-before-after__label {
+    position: absolute;
+    top: 3.2rem;
+    z-index: 4;
+    color: rgb(var(--color-foreground));
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+
+  .knr-before-after-{{ section.id }} .knr-before-after__label--before {
+    left: 3.2rem;
+  }
+
+  .knr-before-after-{{ section.id }} .knr-before-after__label--after {
+    right: 3.2rem;
+  }
+
+  .knr-before-after-{{ section.id }} .knr-before-after__divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--knr-ba-position);
+    z-index: 3;
+    width: 4.8rem;
+    background: transparent;
+    transform: translateX(-50%);
+    cursor: col-resize;
+    touch-action: none;
+  }
+
+  .knr-before-after-{{ section.id }} .knr-before-after__divider::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 0.1rem;
+    background: rgba(255, 255, 255, 0.92);
+    transform: translateX(-50%);
+    content: '';
+  }
+
+  .knr-before-after-{{ section.id }} .knr-before-after__handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    width: 4rem;
+    height: 4rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #111111;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0.2rem 1.4rem rgba(0, 0, 0, 0.12);
+  }
+
+  .knr-before-after-{{ section.id }} .knr-before-after__handle span,
+  .knr-before-after-{{ section.id }} .knr-before-after__handle::before,
+  .knr-before-after-{{ section.id }} .knr-before-after__handle::after {
+    display: block;
+    width: 0.15rem;
+    height: 1rem;
+    border-radius: 99rem;
+    background: currentColor;
+    content: '';
+  }
+
+  .knr-before-after-{{ section.id }} .knr-before-after__handle span {
+    margin: 0 0.25rem;
+  }
+  .knr-before-after__inner .inline-richtext {
+    margin-top: 0px;
+    margin-bottom: 2rem;
+}
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    .knr-before-after-{{ section.id }} .knr-before-after__frame,
+    .knr-before-after-{{ section.id }} .knr-before-after__image,
+    .knr-before-after-{{ section.id }} .knr-before-after__placeholder {
+      height: var(--knr-ba-height-desktop);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .knr-before-after-{{ section.id }} .knr-before-after__label {
+      top: 1.6rem;
+      font-size: 1rem;
+    }
+
+    .knr-before-after-{{ section.id }} .knr-before-after__label--before {
+      left: 1.6rem;
+    }
+
+    .knr-before-after-{{ section.id }} .knr-before-after__label--after {
+      right: 1.6rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="knr-before-after knr-before-after-{{ section.id }} color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="knr-before-after__inner{% if section.settings.full_width %} knr-before-after__inner--full-width{% else %} page-width{% endif %}">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="knr-before-after__heading rte center inline-richtext h1 scroll-trigger animate--slide-in" data-cascade style="--animation-order: 0;">
+        {{ section.settings.heading }}
+      </h2>
+    {%- endif -%}
+
+    {%- if section.settings.text != blank -%}
+      <div class="knr-before-after__text rte center scroll-trigger animate--slide-in" data-cascade style="--animation-order: 0;">
+        {{ section.settings.text }}
+      </div>
+    {%- endif -%}
+
+    <div class="knr-before-after__frame" data-knr-before-after>
+      <span class="knr-before-after__label knr-before-after__label--before">
+        {{ section.settings.before_label | escape }}
+      </span>
+      <span class="knr-before-after__label knr-before-after__label--after">
+        {{ section.settings.after_label | escape }}
+      </span>
+
+      <div class="knr-before-after__after">
+        {%- if section.settings.after_image != blank -%}
+          {{
+            section.settings.after_image
+            | image_url: width: 2400
+            | image_tag:
+              class: 'knr-before-after__image',
+              loading: 'lazy',
+              widths: '375, 550, 750, 1100, 1500, 1780, 2000, 2400',
+              sizes: '100vw',
+              alt: section.settings.after_image.alt
+          }}
+        {%- else -%}
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'knr-before-after__placeholder placeholder-svg' }}
+        {%- endif -%}
+      </div>
+
+      <div class="knr-before-after__before">
+        {%- if section.settings.before_image != blank -%}
+          {{
+            section.settings.before_image
+            | image_url: width: 2400
+            | image_tag:
+              class: 'knr-before-after__image',
+              loading: 'lazy',
+              widths: '375, 550, 750, 1100, 1500, 1780, 2000, 2400',
+              sizes: '100vw',
+              alt: section.settings.before_image.alt
+          }}
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'knr-before-after__placeholder placeholder-svg' }}
+        {%- endif -%}
+      </div>
+
+      <div class="knr-before-after__divider" aria-label="{{ section.settings.accessibility_label | escape }}">
+        <div class="knr-before-after__handle" aria-hidden="true">
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    function initBeforeAfter(container) {
+      if (!container || container.dataset.knrBeforeAfterReady === 'true') return;
+
+      var divider = container.querySelector('.knr-before-after__divider');
+      if (!divider) return;
+      var isDragging = false;
+      var startX = 0;
+      var dragThreshold = 2;
+
+      function update(value) {
+        var nextValue = Math.max(0, Math.min(100, value));
+        container.style.setProperty('--knr-ba-position', nextValue + '%');
+      }
+
+      function updateFrameWidth() {
+        container.style.setProperty('--knr-ba-frame-width', container.clientWidth + 'px');
+      }
+
+      function getClientX(event) {
+        if (event.touches && event.touches.length) return event.touches[0].clientX;
+        if (event.changedTouches && event.changedTouches.length) return event.changedTouches[0].clientX;
+        return event.clientX;
+      }
+
+      function getValueFromClientX(clientX) {
+        var rect = container.getBoundingClientRect();
+        return ((clientX - rect.left) / rect.width) * 100;
+      }
+
+      function startDrag(event) {
+        isDragging = true;
+        startX = getClientX(event);
+        event.preventDefault();
+      }
+
+      function moveDrag(event) {
+        if (!isDragging) return;
+
+        var clientX = getClientX(event);
+        if (Math.abs(clientX - startX) < dragThreshold) return;
+
+        update(getValueFromClientX(clientX));
+        event.preventDefault();
+      }
+
+      function stopDrag() {
+        isDragging = false;
+      }
+
+      updateFrameWidth();
+      update({{ section.settings.initial_position | json }});
+
+      if (window.PointerEvent) {
+        divider.addEventListener('pointerdown', startDrag);
+        document.addEventListener('pointermove', moveDrag);
+        document.addEventListener('pointerup', stopDrag);
+        document.addEventListener('pointercancel', stopDrag);
+      } else {
+        divider.addEventListener('mousedown', startDrag);
+        divider.addEventListener('touchstart', startDrag, { passive: false });
+        document.addEventListener('mousemove', moveDrag);
+        document.addEventListener('mouseup', stopDrag);
+        document.addEventListener('touchmove', moveDrag, { passive: false });
+        document.addEventListener('touchend', stopDrag);
+        document.addEventListener('touchcancel', stopDrag);
+      }
+
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(updateFrameWidth).observe(container);
+      } else {
+        window.addEventListener('resize', updateFrameWidth);
+      }
+
+      container.dataset.knrBeforeAfterReady = 'true';
+    }
+
+    function initAll(root) {
+      (root || document).querySelectorAll('[data-knr-before-after]').forEach(initBeforeAfter);
+    }
+
+    initAll(document);
+
+    document.addEventListener('shopify:section:load', function(event) {
+      initAll(event.target);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "KNR before / after",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Ce que disent nos clientes"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Des transformations visibles dès 4 semaines. Nos clientes témoignent d'une peau visiblement régénérée, plus ferme et lumineuse.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Before image"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "After image"
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "label": "Before label",
+      "default": "Before"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "label": "After label",
+      "default": "After"
+    },
+    {
+      "type": "range",
+      "id": "initial_position",
+      "min": 10,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "label": "Initial divider position",
+      "default": 50
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Make section full width",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 800,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Max width",
+      "default": 1280
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 360,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "label": "Desktop image height",
+      "default": 560
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 260,
+      "max": 700,
+      "step": 20,
+      "unit": "px",
+      "label": "Mobile image height",
+      "default": 420
+    },
+    {
+      "type": "text",
+      "id": "accessibility_label",
+      "label": "Slider accessibility label",
+      "default": "Compare before and after images"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile padding bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "KNR before / after"
+    }
+  ]
+}
+{% endschema %}

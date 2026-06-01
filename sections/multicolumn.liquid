@@ -3,14 +3,14 @@
 
 {%- style -%}
   .section-{{ section.id }}-padding {
-   padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.64 | round: 0 }}px;
+   padding-top: {{ section.settings.mobile_padding_top }}px;
+   padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
   }
 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom | times: 1.20 | round: 0 }}px;
+       padding-top: {{ section.settings.padding_top }}px;
+   padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
 {%- endstyle -%}
@@ -123,10 +123,10 @@
                   <p class="sub_title">{{ block.settings.sub_title }}</p>
                 {%- endif -%}
                 {%- if block.settings.title != blank -%}
-                  <h4 class="inline-richtext">{{ block.settings.title }}</h4>
+                  <h4 class="inline-richtext {{ block.settings.block_heading_size }}">{{ block.settings.title }}</h4>
                 {%- endif -%}
                 {%- if block.settings.text != blank -%}
-                  <div class="rte">{{ block.settings.text }}</div>
+                  <div class="rte {{ block.settings.block_text_size }}">{{ block.settings.text }}</div>
                 {%- endif -%}
                 {%- if block.settings.link_label != blank -%}
                   <a
@@ -150,10 +150,11 @@
       </ul>
 
       {%- if show_mobile_slider -%}
-      
 
-        <div class="slider-scrollbar-container flex justify-center items-center  md:hidden {% if hide_mobile_slider %} hidden {% endif %}">
-  <div class="slider-scrollbar-track">
+<div class="slider-scrollbar-container flex justify-center items-center  md:hidden {% if hide_mobile_slider %} hidden {% endif %}">
+  
+  
+        <div class="slider-scrollbar-track">
     <div class="slider-scrollbar-thumb" ></div>
   </div>
 </div>
@@ -382,6 +383,26 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "mobile padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "mobile padding bottom",
       "default": 36
     }
   ],
@@ -401,6 +422,30 @@
           "default": "t:sections.multicolumn.blocks.column.settings.title.default",
           "label": "t:sections.multicolumn.blocks.column.settings.title.label"
         },
+           {
+      "type": "select",
+      "id": "block_heading_size",
+      "options": [
+        {
+          "value": "text-small",
+          "label": "small"
+        },
+        {
+          "value": "text-x-small",
+          "label": "xtra small"
+        },
+        {
+          "value": "text-medium",
+          "label": "medium"
+        },
+        {
+          "value": "text-large",
+          "label": "large"
+        }
+      ],
+      "default": "text-medium",
+      "label": "heading size"
+    },
          {
           "type": "text",
           "id": "sub_title",
@@ -413,6 +458,30 @@
           "default": "t:sections.multicolumn.blocks.column.settings.text.default",
           "label": "t:sections.multicolumn.blocks.column.settings.text.label"
         },
+         {
+      "type": "select",
+      "id": "block_text_size",
+      "options": [
+        {
+          "value": "text-small",
+          "label": "small"
+        },
+        {
+          "value": "text-x-small",
+          "label": "xtra small"
+        },
+        {
+          "value": "text-medium",
+          "label": "medium"
+        },
+        {
+          "value": "text-large",
+          "label": "large"
+        }
+      ],
+      "default": "text-small",
+      "label": "text size"
+    },
         {
           "type": "text",
           "id": "link_label",

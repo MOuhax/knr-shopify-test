@@ -1,0 +1,940 @@
+{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign desktop_image = section.settings.desktop_image
+  assign mobile_image = section.settings.mobile_image
+  assign full_width = '100vw'
+  assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+  assign fetch_priority = 'auto'
+  assign left_flex_alignment = 'flex-start'
+  assign right_flex_alignment = 'flex-end'
+  assign mobile_flex_alignment = 'flex-start'
+
+  if section.settings.left_content_alignment == 'center'
+    assign left_flex_alignment = 'center'
+  elsif section.settings.left_content_alignment == 'right'
+    assign left_flex_alignment = 'flex-end'
+  endif
+
+  if section.settings.right_content_alignment == 'center'
+    assign right_flex_alignment = 'center'
+  elsif section.settings.right_content_alignment == 'left'
+    assign right_flex_alignment = 'flex-start'
+  endif
+
+  if section.settings.mobile_text_alignment == 'center'
+    assign mobile_flex_alignment = 'center'
+  elsif section.settings.mobile_text_alignment == 'right'
+    assign mobile_flex_alignment = 'flex-end'
+  endif
+
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+
+  assign left_has_content = false
+  assign right_has_content = false
+
+  for block in section.blocks
+    if block.settings.content_area == 'right'
+      assign right_has_content = true
+    else
+      assign left_has_content = true
+    endif
+  endfor
+-%}
+
+{%- style -%}
+  #KnrBanner-{{ section.id }}::after {
+    opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+  }
+
+  #KnrBanner-{{ section.id }},
+  #KnrBanner-{{ section.id }} .knr-image-banner__content {
+    min-height: {{ section.settings.mobile_banner_height }}px;
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__content {
+    min-height: inherit;
+    padding: 0;
+    gap: {{ section.settings.desktop_content_gap }}px;
+    color: {{ section.settings.text_color }};
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__column {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__column--left {
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__column--right {
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__box {
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    color: inherit;
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__column--left .knr-image-banner__box {
+    max-width: {{ section.settings.left_content_max_width }}px;
+    text-align: {{ section.settings.left_content_alignment }};
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__column--right .knr-image-banner__box {
+    max-width: {{ section.settings.right_content_max_width }}px;
+    text-align: {{ section.settings.right_content_alignment }};
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__box::after,
+  #KnrBanner-{{ section.id }} .content-container::after {
+    display: none;
+  }
+
+  #KnrBanner-{{ section.id }}.knr-image-banner--show-text-box .knr-image-banner__box {
+    padding: 3rem;
+    background: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__kicker {
+    margin: 0;
+    color: inherit;
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__kicker-line {
+    display: block;
+    width: 24px;
+    height: 1px;
+    margin-top: 16px;
+    background: currentColor;
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__text,
+  #KnrBanner-{{ section.id }} .knr-image-banner__heading,
+  #KnrBanner-{{ section.id }} .knr-image-banner__author {
+    color: inherit;
+    text-align: inherit;
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__text p,
+  #KnrBanner-{{ section.id }} .knr-image-banner__author p {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__text--large {
+    font-size: 44px;
+    line-height: 1.1;
+    letter-spacing: 0;
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__author {
+    margin-top: 24px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__column--left .banner__buttons {
+    justify-content: {{ left_flex_alignment }};
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__column--right .banner__buttons {
+    justify-content: {{ right_flex_alignment }};
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__column--left .knr-image-banner__kicker-line {
+    margin-right: {% if section.settings.left_content_alignment == 'right' %}0{% else %}auto{% endif %};
+    margin-left: {% if section.settings.left_content_alignment == 'left' %}0{% else %}auto{% endif %};
+  }
+
+  #KnrBanner-{{ section.id }} .knr-image-banner__column--right .knr-image-banner__kicker-line {
+    margin-right: {% if section.settings.right_content_alignment == 'right' %}0{% else %}auto{% endif %};
+    margin-left: {% if section.settings.right_content_alignment == 'left' %}0{% else %}auto{% endif %};
+  }
+
+  @media screen and (min-width: 750px) {
+    #KnrBanner-{{ section.id }},
+    #KnrBanner-{{ section.id }} .knr-image-banner__content {
+      min-height: {{ section.settings.desktop_banner_height }}px;
+    }
+
+    #KnrBanner-{{ section.id }} .knr-image-banner__content {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      padding: {{ section.settings.desktop_content_padding }}px;
+      max-width: none;
+    }
+
+    #KnrBanner-{{ section.id }} .knr-image-banner__column--left {
+      grid-column: 1;
+    }
+
+    #KnrBanner-{{ section.id }} .knr-image-banner__column--right {
+      grid-column: 2;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #KnrBanner-{{ section.id }}.knr-image-banner--has-mobile-image .knr-image-banner__media--desktop {
+      display: none;
+    }
+
+    #KnrBanner-{{ section.id }} .knr-image-banner__content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: {{ section.settings.mobile_content_padding }}px;
+      gap: {{ section.settings.mobile_content_gap }}px;
+    }
+
+    #KnrBanner-{{ section.id }} .knr-image-banner__column {
+      justify-content: {{ section.settings.mobile_content_alignment }};
+      align-items: {{ section.settings.mobile_content_alignment }};
+    }
+
+    #KnrBanner-{{ section.id }} .knr-image-banner__box {
+      width: 100%;
+      max-width: {{ section.settings.mobile_content_max_width }}px;
+      text-align: {{ section.settings.mobile_text_alignment }};
+    }
+
+    #KnrBanner-{{ section.id }} .knr-image-banner__kicker {
+      font-size: 18px;
+    }
+
+    #KnrBanner-{{ section.id }} .knr-image-banner__text--large {
+      font-size: 32px;
+    }
+
+    #KnrBanner-{{ section.id }} .knr-image-banner__author {
+      font-size: 14px;
+    }
+
+    #KnrBanner-{{ section.id }} .banner__buttons {
+      justify-content: {{ mobile_flex_alignment }};
+    }
+
+    #KnrBanner-{{ section.id }} .knr-image-banner__kicker-line {
+      margin-right: {% if section.settings.mobile_text_alignment == 'right' %}0{% else %}auto{% endif %};
+      margin-left: {% if section.settings.mobile_text_alignment == 'left' %}0{% else %}auto{% endif %};
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    #KnrBanner-{{ section.id }} .knr-image-banner__media--mobile {
+      display: none;
+    }
+  }
+{%- endstyle -%}
+
+<div
+  id="KnrBanner-{{ section.id }}"
+  class="banner knr-image-banner{% if mobile_image != blank %} knr-image-banner--has-mobile-image{% endif %}{% if section.settings.show_text_box %} knr-image-banner--show-text-box{% endif %}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+>
+  {%- if desktop_image != blank -%}
+    <div class="banner__media knr-image-banner__media knr-image-banner__media--desktop media{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      {%- assign desktop_image_height = desktop_image.width | divided_by: desktop_image.aspect_ratio -%}
+      {{
+        desktop_image
+        | image_url: width: 3840
+        | image_tag:
+          width: desktop_image.width,
+          height: desktop_image_height,
+          sizes: full_width,
+          widths: widths,
+          fetchpriority: fetch_priority
+      }}
+    </div>
+  {%- endif -%}
+
+  {%- if mobile_image != blank -%}
+    <div class="banner__media knr-image-banner__media knr-image-banner__media--mobile media{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      {%- assign mobile_image_height = mobile_image.width | divided_by: mobile_image.aspect_ratio -%}
+      {{
+        mobile_image
+        | image_url: width: 1500
+        | image_tag:
+          width: mobile_image.width,
+          height: mobile_image_height,
+          sizes: full_width,
+          widths: '375, 550, 750, 1100, 1500',
+          fetchpriority: fetch_priority
+      }}
+    </div>
+  {%- endif -%}
+
+  {%- if desktop_image == blank and mobile_image == blank -%}
+    <div class="banner__media knr-image-banner__media media placeholder{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+  {%- endif -%}
+
+  <div class="banner__content knr-image-banner__content{% unless section.settings.full_width_content %} page-width{% endunless %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    {%- if left_has_content -%}
+      <div class="knr-image-banner__column knr-image-banner__column--left">
+        <div class="banner__box knr-image-banner__box content-container content-container--full-width-mobile color-{{ section.settings.content_color_scheme }} gradient">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.content_area != 'right' -%}
+              {%- case block.type -%}
+                {%- when 'kicker' -%}
+                  <div class="knr-image-banner__kicker" {{ block.shopify_attributes }}>
+                    {{ block.settings.text | escape }}
+                    {%- if block.settings.show_line -%}
+                      <span class="knr-image-banner__kicker-line" aria-hidden="true"></span>
+                    {%- endif -%}
+                  </div>
+                {%- when 'heading' -%}
+                  <h2 class="banner__heading knr-image-banner__heading inline-richtext {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+                    {{ block.settings.heading }}
+                  </h2>
+                {%- when 'text' -%}
+                  <div class="banner__text knr-image-banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+                    {{ block.settings.text }}
+                  </div>
+                {%- when 'author' -%}
+                  <div class="knr-image-banner__author rte" {{ block.shopify_attributes }}>
+                    {{ block.settings.text }}
+                  </div>
+                {%- when 'buttons' -%}
+                  <div class="banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} banner__buttons--multiple{% endif %}" {{ block.shopify_attributes }}>
+                    {%- if block.settings.button_label_1 != blank -%}
+                      <a
+                        {% if block.settings.button_link_1 == blank %}
+                          role="link" aria-disabled="true"
+                        {% else %}
+                          href="{{ block.settings.button_link_1 }}"
+                        {% endif %}
+                        class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
+                      >
+                        {{- block.settings.button_label_1 | escape -}}
+                      </a>
+                    {%- endif -%}
+                    {%- if block.settings.button_label_2 != blank -%}
+                      <a
+                        {% if block.settings.button_link_2 == blank %}
+                          role="link" aria-disabled="true"
+                        {% else %}
+                          href="{{ block.settings.button_link_2 }}"
+                        {% endif %}
+                        class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+                      >
+                        {{- block.settings.button_label_2 | escape -}}
+                      </a>
+                    {%- endif -%}
+                  </div>
+              {%- endcase -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if right_has_content -%}
+      <div class="knr-image-banner__column knr-image-banner__column--right">
+        <div class="banner__box knr-image-banner__box content-container content-container--full-width-mobile color-{{ section.settings.content_color_scheme }} gradient">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.content_area == 'right' -%}
+              {%- case block.type -%}
+                {%- when 'kicker' -%}
+                  <div class="knr-image-banner__kicker" {{ block.shopify_attributes }}>
+                    {{ block.settings.text | escape }}
+                    {%- if block.settings.show_line -%}
+                      <span class="knr-image-banner__kicker-line" aria-hidden="true"></span>
+                    {%- endif -%}
+                  </div>
+                {%- when 'heading' -%}
+                  <h2 class="banner__heading knr-image-banner__heading inline-richtext {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+                    {{ block.settings.heading }}
+                  </h2>
+                {%- when 'text' -%}
+                  <div class="banner__text knr-image-banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+                    {{ block.settings.text }}
+                  </div>
+                {%- when 'author' -%}
+                  <div class="knr-image-banner__author rte" {{ block.shopify_attributes }}>
+                    {{ block.settings.text }}
+                  </div>
+                {%- when 'buttons' -%}
+                  <div class="banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} banner__buttons--multiple{% endif %}" {{ block.shopify_attributes }}>
+                    {%- if block.settings.button_label_1 != blank -%}
+                      <a
+                        {% if block.settings.button_link_1 == blank %}
+                          role="link" aria-disabled="true"
+                        {% else %}
+                          href="{{ block.settings.button_link_1 }}"
+                        {% endif %}
+                        class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
+                      >
+                        {{- block.settings.button_label_1 | escape -}}
+                      </a>
+                    {%- endif -%}
+                    {%- if block.settings.button_label_2 != blank -%}
+                      <a
+                        {% if block.settings.button_link_2 == blank %}
+                          role="link" aria-disabled="true"
+                        {% else %}
+                          href="{{ block.settings.button_link_2 }}"
+                        {% endif %}
+                        class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+                      >
+                        {{- block.settings.button_label_2 | escape -}}
+                      </a>
+                    {%- endif -%}
+                  </div>
+              {%- endcase -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "KNR image banner",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "%",
+      "label": "Image overlay opacity",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "image_behavior",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "ambient",
+          "label": "Ambient movement"
+        },
+        {
+          "value": "fixed",
+          "label": "Fixed background"
+        },
+        {
+          "value": "zoom-in",
+          "label": "Zoom in on scroll"
+        }
+      ],
+      "default": "none",
+      "label": "Image behavior"
+    },
+    {
+      "type": "range",
+      "id": "desktop_banner_height",
+      "min": 400,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "label": "Desktop banner height",
+      "default": 900
+    },
+    {
+      "type": "range",
+      "id": "mobile_banner_height",
+      "min": 500,
+      "max": 1300,
+      "step": 20,
+      "unit": "px",
+      "label": "Mobile banner height",
+      "default": 1100
+    },
+    {
+      "type": "header",
+      "content": "Content boxes"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text_box",
+      "default": false,
+      "label": "Show container background"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width_content",
+      "default": true,
+      "label": "Use full width content overlay"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_scheme",
+      "id": "content_color_scheme",
+      "label": "Content color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "left_content_max_width",
+      "min": 180,
+      "max": 720,
+      "step": 20,
+      "unit": "px",
+      "label": "Left content max width",
+      "default": 460
+    },
+    {
+      "type": "range",
+      "id": "right_content_max_width",
+      "min": 300,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "label": "Right content max width",
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "desktop_content_padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop content padding",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "desktop_content_gap",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop gap between boxes",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Left content"
+    },
+    {
+      "type": "select",
+      "id": "left_content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text alignment"
+    },
+    {
+      "type": "header",
+      "content": "Right content"
+    },
+    {
+      "type": "select",
+      "id": "right_content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "right",
+      "label": "Text alignment"
+    },
+    {
+      "type": "header",
+      "content": "Mobile content"
+    },
+    {
+      "type": "select",
+      "id": "mobile_content_alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "flex-start",
+      "label": "Box alignment"
+    },
+    {
+      "type": "select",
+      "id": "mobile_text_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text alignment"
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_max_width",
+      "min": 220,
+      "max": 520,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile content max width",
+      "default": 520
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile content padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_gap",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile gap between boxes",
+      "default": 24
+    }
+  ],
+  "blocks": [
+    {
+      "type": "kicker",
+      "name": "Kicker with line",
+      "settings": [
+        {
+          "type": "select",
+          "id": "content_area",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left content"
+            },
+            {
+              "value": "right",
+              "label": "Right content"
+            }
+          ],
+          "default": "left",
+          "label": "Content area"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Notre engagement pour une beauté régénérée",
+          "label": "Text"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_line",
+          "default": true,
+          "label": "Show line under text"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "select",
+          "id": "content_area",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left content"
+            },
+            {
+              "value": "right",
+              "label": "Right content"
+            }
+          ],
+          "default": "left",
+          "label": "Content area"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Image banner",
+          "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "Small"
+            },
+            {
+              "value": "h1",
+              "label": "Medium"
+            },
+            {
+              "value": "h0",
+              "label": "Large"
+            },
+            {
+              "value": "hxl",
+              "label": "Extra large"
+            },
+            {
+              "value": "hxxl",
+              "label": "Extra extra large"
+            }
+          ],
+          "default": "h1",
+          "label": "Heading size"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "select",
+          "id": "content_area",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left content"
+            },
+            {
+              "value": "right",
+              "label": "Right content"
+            }
+          ],
+          "default": "left",
+          "label": "Content area"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Give customers details about the banner image or content on this side.</p>",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "Body"
+            },
+            {
+              "value": "subtitle",
+              "label": "Subtitle"
+            },
+            {
+              "value": "caption-with-letter-spacing",
+              "label": "Caption"
+            },
+            {
+              "value": "knr-image-banner__text--large",
+              "label": "Large banner text"
+            }
+          ],
+          "default": "knr-image-banner__text--large",
+          "label": "Text style"
+        }
+      ]
+    },
+    {
+      "type": "author",
+      "name": "Author",
+      "settings": [
+        {
+          "type": "select",
+          "id": "content_area",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left content"
+            },
+            {
+              "value": "right",
+              "label": "Right content"
+            }
+          ],
+          "default": "right",
+          "label": "Content area"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Sophie M.</p>",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "buttons",
+      "name": "Buttons",
+      "settings": [
+        {
+          "type": "select",
+          "id": "content_area",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left content"
+            },
+            {
+              "value": "right",
+              "label": "Right content"
+            }
+          ],
+          "default": "left",
+          "label": "Content area"
+        },
+        {
+          "type": "header",
+          "content": "First button"
+        },
+        {
+          "type": "text",
+          "id": "button_label_1",
+          "default": "Shop now",
+          "label": "Button label",
+          "info": "Leave blank to hide the button."
+        },
+        {
+          "type": "url",
+          "id": "button_link_1",
+          "label": "Button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_1",
+          "default": false,
+          "label": "Use outline button style"
+        },
+        {
+          "type": "header",
+          "content": "Second button"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "Button label",
+          "info": "Leave blank to hide the button."
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "Button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_2",
+          "default": false,
+          "label": "Use outline button style"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "KNR image banner",
+      "blocks": [
+        {
+          "type": "kicker",
+          "settings": {
+            "content_area": "left"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "content_area": "right",
+            "text": "<p>Fusionnant l'huile de rosier muscat, le rétinol végétal et l'extrait de cactus, notre sérum pénètre en profondeur pour stimuler le renouvellement cellulaire, atténuer les rides et redonner à la peau son éclat et sa fermeté naturels.</p>",
+            "text_style": "knr-image-banner__text--large"
+          }
+        },
+        {
+          "type": "author",
+          "settings": {
+            "content_area": "right"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

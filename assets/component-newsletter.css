@@ -31,9 +31,12 @@
   justify-content: center;
   margin-bottom: 0;
 }
+.newsletter-note {
+font-size: 10px;
+}
 
 .newsletter-form__message--success {
-  margin-top: 2rem;
+  margin-top: 0rem;
 }
 
 @media screen and (min-width: 750px) {
@@ -62,10 +65,17 @@
 }
 
 .newsletter-form__button:not(:focus-visible):not(.focused) {
-  box-shadow: inherit;
-  background-color: inherit;
+    box-shadow: inherit;
+    background-color: inherit;
+    color: #fff;
+    background: #000;
 }
-
+.newsletter-form__button {
+    width: 14rem;
+}
+.newsletter-form__field-wrapper .field__input {
+    height: 4.5rem;
+}
 .newsletter-form__button .icon {
   width: 1.5rem;
 }

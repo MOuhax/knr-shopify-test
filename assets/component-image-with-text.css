@@ -87,7 +87,7 @@
   height: 100%;
   justify-content: center;
   align-self: center;
-  padding: 4rem calc(4rem / var(--font-body-scale)) 5rem;
+  padding: 4rem calc(0rem / var(--font-body-scale)) 5rem;
   position: relative;
   z-index: 1;
 }
@@ -162,10 +162,7 @@
   text-align: right;
 }
 
-.image-with-text__content--mobile-center > * {
-  align-self: center;
-  text-align: center;
-}
+
 
 .image-with-text--overlap .image-with-text__content {
   width: 90%;
@@ -371,7 +368,15 @@
   margin-top: 0;
   margin-bottom: 1rem;
 }
+.image-with-text__newsletter {
+    width: 100%;
+}
 
+
+.image-with-text__newsletter .newsletter-form, 
+.image-with-text__newsletter .newsletter-form__field-wrapper {
+        max-width: unset;
+    }
 @media screen and (max-width: 749px) {
   .collapse-padding .image-with-text__grid .image-with-text__content {
     padding-left: 0;

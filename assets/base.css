@@ -3625,15 +3625,3 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
-
-
-/* Base CSS added by Mo  --  start -- */
-
-.product__info-wrapper.grid__item {
-    position: absolute;
-    right: 10px;
-    top: 150px;
-    background-color: white;
-    padding-top: 25px;
-    padding-left: 25px;
-}

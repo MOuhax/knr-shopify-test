@@ -18,6 +18,10 @@
   {%- if section.settings.enable_sticky_product_details_wrapper -%}
     <script src="{{ 'knr-product-sticky-info.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
+  {%- if section.settings.enable_sticky_add_to_cart -%}
+    {{ 'knr-sticky-add-to-cart.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'knr-sticky-add-to-cart.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
 
   {% unless product.has_only_default_variant %}
     {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
@@ -690,6 +694,63 @@
     </div>
 
     {% render 'product-media-modal', variant_images: variant_images %}
+
+    {%- if section.settings.enable_sticky_add_to_cart -%}
+      {%- assign sticky_variant = product.selected_or_first_available_variant -%}
+      <div class="knr-sticky-cart" data-section-id="{{ section.id }}">
+        <div class="knr-sticky-cart__inner">
+          {%- if sticky_variant.featured_media -%}
+            {%- assign sticky_media = sticky_variant.featured_media -%}
+          {%- else -%}
+            {%- assign sticky_media = product.featured_media -%}
+          {%- endif -%}
+
+          {%- if sticky_media -%}
+            <img
+              class="knr-sticky-cart__image"
+              src="{{ sticky_media | image_url: width: 220 }}"
+              alt="{{ sticky_media.alt | default: product.title | escape }}"
+              width="110"
+              height="110"
+              loading="lazy"
+            >
+          {%- endif -%}
+
+          <div class="knr-sticky-cart__content">
+            <h2 class="knr-sticky-cart__title">{{ product.title | escape }}</h2>
+
+            {%- unless product.has_only_default_variant -%}
+              <div class="knr-sticky-cart__options">
+                {%- for option in product.options_with_values -%}
+                  <span>{{ option.selected_value }}</span>
+                {%- endfor -%}
+              </div>
+            {%- endunless -%}
+
+            <div class="knr-sticky-cart__price">
+              {{ sticky_variant.price | money }}
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="button knr-sticky-cart__button"
+            data-sticky-add-to-cart
+            {% unless sticky_variant.available %}
+              disabled
+            {% endunless %}
+          >
+            <span>
+              {%- if sticky_variant.available -%}
+                {{ 'products.product.add_to_cart' | t }}
+              {%- else -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- endif -%}
+            </span>
+          </button>
+        </div>
+      </div>
+    {%- endif -%}
 
     {% assign popups = section.blocks | where: 'type', 'popup' %}
     {%- for block in popups -%}
@@ -2129,6 +2190,12 @@
       "id": "enable_sticky_product_details_wrapper",
       "default": false,
       "label": "Enable sticky product details wrapper"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_add_to_cart",
+      "default": false,
+      "label": "Enable sticky add to cart"
     },
     {
       "type": "color_scheme",

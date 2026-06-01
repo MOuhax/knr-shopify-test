@@ -126,7 +126,7 @@ cart-items .title-wrapper-with-link {
 
 .cart-item cart-remove-button {
   display: flex;
-  margin-left: 1rem;
+  margin-left: 0rem;
 }
 
 @media screen and (min-width: 750px) and (max-width: 989px) {
@@ -154,8 +154,8 @@ cart-remove-button .button:not([disabled]):hover {
 
 @media screen and (min-width: 750px) {
   cart-remove-button .button {
-    min-width: 3.5rem;
-    min-height: 3.5rem;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
   }
 }
 

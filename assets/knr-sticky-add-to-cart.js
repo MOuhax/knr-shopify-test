@@ -1,10 +1,16 @@
 (function () {
   function currentOptions() {
+    var seen = [];
+
     return Array.from(document.querySelectorAll('variant-selects fieldset input:checked, variant-selects select'))
       .map(function (input) {
         return input.tagName === 'SELECT' ? input.options[input.selectedIndex].text : input.value;
       })
-      .filter(Boolean);
+      .filter(function (option) {
+        if (!option || seen.indexOf(option) !== -1) return false;
+        seen.push(option);
+        return true;
+      });
   }
 
   function currentPrice(sectionId) {

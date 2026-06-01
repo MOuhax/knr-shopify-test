@@ -13,19 +13,62 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "link_list_nkGVaQ": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Découvrir",
+            "menu": "main-menu"
+          }
+        },
+        "link_list_kmtzDE": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Service client",
+            "menu": "main-menu"
+          }
+        },
+        "link_list_mYDDca": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Légal & Transparence",
+            "menu": "main-menu"
+          }
+        },
+        "text_HX3aFq": {
+          "type": "text",
+          "settings": {
+            "heading": "À propos de Maison Célestine",
+            "subtext": "<p>Maison Célestine est une marque de soins anti-âge haut de gamme formulée autour d’actifs rares et certifiés biologiques, guidée par une expertise médicale et un rituel simple, précis et efficace.</p>",
+            "block_image": "shopify://shop_images/Calque_1.png",
+            "block_image_width": 180,
+            "bottom_subtext": "<p>Certifié COSMOS ORGANIC par ECOCERT Greenlife</p>",
+            "button_text": "Voir le certificat",
+            "button_link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "link_list_nkGVaQ",
+        "link_list_kmtzDE",
+        "link_list_mYDDca",
+        "text_HX3aFq"
+      ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
+        "color_scheme": "scheme-4",
+        "newsletter_enable": false,
         "newsletter_heading": "Subscribe to our emails",
+        "footer_image": "shopify://shop_images/Union_c330d8d2-e412-45de-88a2-86cc402e67b3.png",
+        "footer_image_width": 100,
         "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": true,
         "enable_language_selector": true,
-        "payment_enable": true,
-        "show_policy": true,
+        "payment_enable": false,
+        "show_policy": false,
         "margin_top": 0,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 80,
+        "padding_bottom": 32
       }
     }
   },

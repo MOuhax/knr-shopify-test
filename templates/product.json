@@ -50,7 +50,7 @@
       "settings": {
         "image": "shopify://shop_images/Product_Image.png",
         "image_overlay_opacity": 0,
-        "image_height": "medium",
+        "image_height": "large",
         "image_behavior": "none",
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
@@ -154,6 +154,17 @@
             "enable_quick_add": false
           }
         },
+        "knr_upsell_cross_sell_JMYNLT": {
+          "type": "knr_upsell_cross_sell",
+          "settings": {
+            "heading": "COMPLÉTEZ VOTRE RITUEL",
+            "products": [
+              "lorem-ipsum",
+              "serum-precieux-regenerant"
+            ],
+            "show_price": true
+          }
+        },
         "share": {
           "type": "share",
           "disabled": true,
@@ -176,6 +187,7 @@
         "collapsible_tab_YQ8mLd",
         "collapsible_tab_gY6Ybm",
         "complementary_L9ihch",
+        "knr_upsell_cross_sell_JMYNLT",
         "share"
       ],
       "settings": {
@@ -229,19 +241,88 @@
         "text_pTD4YL",
         "buttons_ik3NFT"
       ],
+      "disabled": true,
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "image": "shopify://shop_images/Product_Image_9774c916-cbd1-434a-955a-05986cb628cd.png",
         "image_overlay_opacity": 0,
-        "image_height": "medium",
+        "image_height": "large",
         "image_behavior": "none",
         "desktop_content_position": "middle-right",
         "desktop_content_alignment": "left",
         "show_text_box": false,
         "color_scheme": "scheme-3",
-        "stack_images_on_mobile": true,
+        "stack_images_on_mobile": false,
         "mobile_content_alignment": "center",
-        "show_text_below": true
+        "show_text_below": false
+      }
+    },
+    "knr_image_banner_Kb9eLk": {
+      "type": "knr-image-banner",
+      "blocks": {
+        "heading_LfHUgx": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "content_area": "left",
+            "heading": "Left banner text",
+            "heading_size": "h1"
+          }
+        },
+        "text_KHJHmB": {
+          "type": "text",
+          "settings": {
+            "content_area": "left",
+            "text": "<p>Notre engagement pour une beauté régénérée</p>",
+            "text_style": "body"
+          }
+        },
+        "heading_r6Hxy9": {
+          "type": "heading",
+          "settings": {
+            "content_area": "right",
+            "heading": "Fusionnant l'huile de rosier muscat, le rétinol végétal et l'extrait de cactus, notre sérum pénètre en profondeur pour stimuler le renouvellement cellulaire, atténuer les rides et redonner à la peau son éclat et sa fermeté naturels.",
+            "heading_size": "h2"
+          }
+        },
+        "text_BfC94X": {
+          "type": "text",
+          "settings": {
+            "content_area": "right",
+            "text": "<p>Sophie M.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_LfHUgx",
+        "text_KHJHmB",
+        "heading_r6Hxy9",
+        "text_BfC94X"
+      ],
+      "name": "KNR image banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/Product_Image_9774c916-cbd1-434a-955a-05986cb628cd.png",
+        "mobile_image": "shopify://shop_images/Image.png",
+        "image_overlay_opacity": 0,
+        "image_behavior": "none",
+        "desktop_banner_height": 720,
+        "mobile_banner_height": 720,
+        "show_text_box": false,
+        "full_width_content": true,
+        "text_color": "#ffffff",
+        "content_color_scheme": "",
+        "left_content_max_width": 460,
+        "right_content_max_width": 520,
+        "desktop_content_padding": 20,
+        "desktop_content_gap": 20,
+        "left_content_alignment": "left",
+        "right_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "mobile_text_alignment": "center",
+        "mobile_content_max_width": 360,
+        "mobile_content_padding": 24,
+        "mobile_content_gap": 16
       }
     },
     "multicolumn_i7aFJ8": {
@@ -252,8 +333,10 @@
           "settings": {
             "image": "shopify://shop_images/Product_Image_Container_a6403e74-4523-4e1d-bb91-aaf305878de7.png",
             "title": "Découvrir",
+            "block_heading_size": "h4",
             "sub_title": "01",
             "text": "<p>Concentré de pureté active. Huile végétale aux propriétés anti-oxydantes puissantes pour un éclat retrouvé.</p>",
+            "block_text_size": "text-small",
             "link_label": "",
             "link": ""
           }
@@ -263,8 +346,10 @@
           "settings": {
             "image": "shopify://shop_images/Product_Image_Container_2916b9c9-4e2a-4cf1-89e9-261ccc27b232.png",
             "title": "Découvrir",
+            "block_heading_size": "h4",
             "sub_title": "02",
             "text": "<p>Éclat et uniformité retrouvés. Cible les taches et les irrégularités de grain de peau.</p>",
+            "block_text_size": "text-small",
             "link_label": "",
             "link": ""
           }
@@ -274,8 +359,10 @@
           "settings": {
             "image": "shopify://shop_images/Product_Image_Container_0525900b-f677-4f61-94dd-3d22e0fddeb2.png",
             "title": "Découvrir",
+            "block_heading_size": "h4",
             "sub_title": "03",
             "text": "<p>Fermeté et nutrition intense. Répare la barrière cutanée et lisse les contours du visage.</p>",
+            "block_text_size": "text-small",
             "link_label": "",
             "link": ""
           }
@@ -299,9 +386,84 @@
         "background_style": "none",
         "color_scheme": "",
         "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 100
+        "swipe_on_mobile": true,
+        "padding_top": 40,
+        "padding_bottom": 120,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40
+      }
+    },
+    "knr_before_after_C7fMbm": {
+      "type": "knr-before-after",
+      "name": "KNR before / after",
+      "settings": {
+        "heading": "Ce que disent nos clientes",
+        "text": "<p>Des transformations visibles dès 4 semaines. Nos clientes témoignent d'une peau<br/> visiblement régénérée, plus ferme et lumineuse.</p>",
+        "before_image": "shopify://shop_images/Before_Image.png",
+        "after_image": "shopify://shop_images/Before_and_After_Image_fb0cec8e-dd27-4fc8-a9d8-f8c02dcce4f6.png",
+        "before_label": "Before",
+        "after_label": "After",
+        "initial_position": 50,
+        "full_width": false,
+        "max_width": 1280,
+        "color_scheme": "scheme-2",
+        "desktop_height": 640,
+        "mobile_height": 260,
+        "accessibility_label": "Compare before and after images",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40
+      }
+    },
+    "knr_simple_reviews_carousel_HyArNR": {
+      "type": "knr-simple-reviews-carousel",
+      "blocks": {
+        "review_iMyzMN": {
+          "type": "review",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "author": "Clara T.",
+            "quote": "<p>J'utilise ce serum depuis trois mois et la difference est saisissante. Mes rides d'expression se sont considerablement attenuees et mon teint a retrouve une luminosite que je n'avais plus depuis des annees. Une texture soyeuse qui penetre instantanement. Je ne peux plus m'en passer.</p>"
+          }
+        },
+        "review_J6zETW": {
+          "type": "review",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "author": "Clara T.",
+            "quote": "<p>J'utilise ce serum depuis trois mois et la difference est saisissante. Mes rides d'expression se sont considerablement attenuees et mon teint a retrouve une luminosite que je n'avais plus depuis des annees. Une texture soyeuse qui penetre instantanement. Je ne peux plus m'en passer.</p>"
+          }
+        },
+        "review_NUpjg4": {
+          "type": "review",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "author": "Clara T.",
+            "quote": "<p>J'utilise ce serum depuis trois mois et la difference est saisissante. Mes rides d'expression se sont considerablement attenuees et mon teint a retrouve une luminosite que je n'avais plus depuis des annees. Une texture soyeuse qui penetre instantanement. Je ne peux plus m'en passer.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "review_iMyzMN",
+        "review_J6zETW",
+        "review_NUpjg4"
+      ],
+      "name": "KNR reviews carousel",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "full_width": false,
+        "content_width": 980,
+        "accessibility_label": "Customer reviews",
+        "quote_size": 32,
+        "mobile_quote_size": 24,
+        "padding_top": 0,
+        "padding_bottom": 80,
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 40
       }
     },
     "rich_text_qpQCHb": {
@@ -318,6 +480,14 @@
           "type": "text",
           "settings": {
             "text": "<p>Des transformations visibles dès 4 semaines. Nos clientes témoignent d'une peau visiblement régénérée, plus ferme et lumineuse.</p>"
+          }
+        },
+        "image_BNARdk": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Before_and_After_Image.png",
+            "image_width": 1000,
+            "rounded": false
           }
         },
         "text_kkm4pN": {
@@ -342,9 +512,11 @@
       "block_order": [
         "heading_CNkcnJ",
         "text_4Whk8m",
+        "image_BNARdk",
         "text_kkm4pN",
         "button_MgMAFT"
       ],
+      "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
@@ -423,8 +595,10 @@
         "open_first_collapsible_row": false,
         "image_ratio": "adapt",
         "desktop_layout": "image_second",
-        "padding_top": 100,
-        "padding_bottom": 100
+        "padding_top": 120,
+        "padding_bottom": 120,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40
       }
     },
     "featured_blog_cG6gUA": {
@@ -438,8 +612,8 @@
         "columns_desktop": 4,
         "show_view_all": true,
         "show_image": true,
-        "show_date": true,
-        "show_author": true,
+        "show_date": false,
+        "show_author": false,
         "color_scheme": "",
         "padding_top": 80,
         "padding_bottom": 80
@@ -474,27 +648,17 @@
             "heading_size": "h1"
           }
         },
-        "text_gY8D9W": {
-          "type": "text",
-          "disabled": true,
+        "newsletter_37LgMT": {
+          "type": "newsletter",
           "settings": {
-            "text": "<p>Associez un texte à une image pour mettre en avant le produit, la collection ou l’article de blog de votre choix. Ajoutez des informations sur la disponibilité ou le style. Vous pouvez même fournir un avis.</p>",
-            "text_style": "body"
-          }
-        },
-        "button_QfqJ44": {
-          "type": "button",
-          "settings": {
-            "button_label": "Texte du bouton",
-            "button_link": "",
-            "button_style_secondary": false
+            "newsletter_heading": "",
+            "heading_size": "h2"
           }
         }
       },
       "block_order": [
         "heading_HjCatT",
-        "text_gY8D9W",
-        "button_QfqJ44"
+        "newsletter_37LgMT"
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
@@ -504,13 +668,91 @@
         "layout": "image_first",
         "image_behavior": "none",
         "content_layout": "no-overlap",
-        "desktop_content_position": "top",
+        "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
-        "mobile_content_alignment": "left",
+        "mobile_content_alignment": "center",
         "section_color_scheme": "",
         "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "multicolumn_fVFryf": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_a7GyXQ": {
+          "type": "column",
+          "settings": {
+            "title": "LIVRAISON OFFERTE",
+            "block_heading_size": "h5",
+            "sub_title": "",
+            "text": "<p>Livraison offerte<br/>dès 60 € d'achat<br/>en France métropolitaine.</p>",
+            "block_text_size": "text-x-small",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_DRrAxX": {
+          "type": "column",
+          "settings": {
+            "title": "RETOURS GRATUITS",
+            "block_heading_size": "h5",
+            "sub_title": "",
+            "text": "<p>Retours acceptés<br/>jusqu'à 30 jours<br/>après réception.</p>",
+            "block_text_size": "text-x-small",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_WGYpxn": {
+          "type": "column",
+          "settings": {
+            "title": "PAIEMENT SÉCURISÉ",
+            "block_heading_size": "h5",
+            "sub_title": "",
+            "text": "<p>Paiement 100 % sécurisé<br/>par carte bancaire,<br/>PayPal ou virement.</p>",
+            "block_text_size": "text-x-small",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_RpxM8U": {
+          "type": "column",
+          "settings": {
+            "title": "SERVICE CLIENT",
+            "block_heading_size": "h5",
+            "sub_title": "",
+            "text": "<p>Du lundi au vendredi<br/>de 9h à 18h par email<br/>et téléphone.</p>",
+            "block_text_size": "text-x-small",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_a7GyXQ",
+        "column_DRrAxX",
+        "column_WGYpxn",
+        "column_RpxM8U"
+      ],
+      "name": "knr multicolumn",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-5",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 60,
+        "padding_bottom": 80,
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 60
       }
     }
   },
@@ -518,11 +760,15 @@
     "image_banner_4hK4aX",
     "main",
     "image_banner_hFfz9C",
+    "knr_image_banner_Kb9eLk",
     "multicolumn_i7aFJ8",
+    "knr_before_after_C7fMbm",
+    "knr_simple_reviews_carousel_HyArNR",
     "rich_text_qpQCHb",
     "collapsible_content_H9BMKy",
     "featured_blog_cG6gUA",
     "related-products",
-    "image_with_text_kYmwTP"
+    "image_with_text_kYmwTP",
+    "multicolumn_fVFryf"
   ]
 }

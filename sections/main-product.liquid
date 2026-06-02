@@ -44,6 +44,46 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
+
+    .product__delivery-text-slider {
+      margin: 0rem;
+      text-align: center;
+    }
+
+    .product__delivery-text-slider-track {
+      display: flex;
+      gap: 0;
+      padding: 0;
+      margin: 0;
+      overflow-x: hidden;
+      list-style: none;
+    }
+
+    .product__delivery-text-slider-slide {
+      width: 100%;
+      max-width: 100%;
+      flex-basis: 100%;
+    }
+
+    .product__delivery-text-slider-message {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .product__delivery-text-slider .slider-buttons {
+      min-height: auto;
+      margin-top: 0.4rem;
+    }
+
+    .product__delivery-text-slider .slider-button {
+      width: 2.8rem;
+      height: 2.8rem;
+    }
+
+    .product__delivery-text-slider .slider-button .svg-wrapper {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
   {%- endstyle -%}
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
@@ -80,7 +120,7 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
-  <div class="page-width-padding">
+  <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
@@ -106,6 +146,58 @@
                 >
                   {{- block.settings.text -}}
                 </p>
+              {%- when 'delivery_text_slider' -%}
+                {%- liquid
+                  assign delivery_text_count = 0
+
+                  for index in (1..4)
+                    assign setting_id = 'text_' | append: index
+                    assign delivery_text = block.settings[setting_id]
+
+                    if delivery_text != blank
+                      assign delivery_text_count = delivery_text_count | plus: 1
+                    endif
+                  endfor
+                -%}
+
+                {%- if delivery_text_count > 0 -%}
+                  <div class="product__delivery-text-slider" {{ block.shopify_attributes }}>
+                    <slider-component>
+                      <ul
+                        id="Slider-DeliveryText-{{ section.id }}-{{ block.id }}"
+                        class="product__delivery-text-slider-track slider slider--everywhere"
+                        role="list"
+                        aria-label="{{ block.settings.accessibility_label | escape }}"
+                      >
+                        {%- for index in (1..4) -%}
+                          {%- liquid
+                            assign setting_id = 'text_' | append: index
+                            assign delivery_text = block.settings[setting_id]
+                          -%}
+
+                          {%- if delivery_text != blank -%}
+                            <li
+                              id="Slide-DeliveryText-{{ section.id }}-{{ block.id }}-{{ index }}"
+                              class="product__delivery-text-slider-slide slider__slide"
+                            >
+                              <p class="product__delivery-text-slider-message inline-richtext">
+                                {{ delivery_text }}
+                              </p>
+                            </li>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </ul>
+
+                      {%- if delivery_text_count > 1 -%}
+                          <div class="slider-scrollbar-container flex justify-center items-center  md:hidden {% if hide_mobile_slider %} hidden {% endif %}">
+  <div class="slider-scrollbar-track">
+    <div class="slider-scrollbar-thumb" ></div>
+  </div>
+</div>
+                      {%- endif -%}
+                    </slider-component>
+                  </div>
+                {%- endif -%}
               {%- when 'title' -%}
                 <div class="product__title" {{ block.shopify_attributes }}>
                   <h1 class="h4">{{ product.title | escape }}</h1>
@@ -870,6 +962,40 @@
           ],
           "default": "body",
           "label": "t:sections.main-product.blocks.text.settings.text_style.label"
+        }
+      ]
+    },
+    {
+      "type": "delivery_text_slider",
+      "name": "Delivery text slider",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text_1",
+          "default": "En stock, livraison estimée Mercredi 25 février.",
+          "label": "Text 1"
+        },
+        {
+          "type": "text",
+          "id": "text_2",
+          "label": "Text 2"
+        },
+        {
+          "type": "text",
+          "id": "text_3",
+          "label": "Text 3"
+        },
+        {
+          "type": "text",
+          "id": "text_4",
+          "label": "Text 4"
+        },
+        {
+          "type": "text",
+          "id": "accessibility_label",
+          "default": "Delivery information",
+          "label": "Accessibility label"
         }
       ]
     },

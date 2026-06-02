@@ -46,6 +46,9 @@
         "text_a4PzA6",
         "buttons_gNcYyq"
       ],
+      "custom_css": [
+        "@media (max-width: 749px) {{display: none; padding-top: 0px; }}"
+      ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "image": "shopify://shop_images/Product_Image.png",
@@ -64,24 +67,43 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": {
+        "text_XfH6Vn": {
           "type": "text",
           "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
+            "text": "Soins anti-âge / Collection Cactus",
+            "text_color": "#b5a282",
+            "text_style": "body"
+          }
+        },
+        "product_purposes_gAzUTV": {
+          "type": "product_purposes",
+          "settings": {
+            "heading": ""
           }
         },
         "title": {
           "type": "title",
           "settings": {}
         },
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
         "rating_JAYPYg": {
           "type": "rating",
           "settings": {}
+        },
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>Yuka</strong> 100/100 • <strong>INCI Beauty</strong> 20/20",
+            "text_color": "",
+            "text_style": "subtitle"
+          }
+        },
+        "text_dyXagU": {
+          "type": "text",
+          "settings": {
+            "text": "Une huile anti-âge sèche ultra fine qui travaille en synergie avec la peau pour la maintenir ferme, pleine de vitalité tout en lissant les rides.",
+            "text_color": "",
+            "text_style": "body"
+          }
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -90,54 +112,65 @@
             "swatch_shape": "circle"
           }
         },
-        "quantity_selector": {
-          "type": "quantity_selector",
+        "price": {
+          "type": "price",
           "settings": {}
         },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "delivery_text_slider_gHzBpX": {
+          "type": "delivery_text_slider",
+          "settings": {
+            "text_1": "En stock, livraison estimée Mercredi 25 février.",
+            "text_2": "Livraison gratuite",
+            "text_3": "Retours gratuits",
+            "text_4": "",
+            "accessibility_label": "Delivery information"
           }
         },
         "description": {
           "type": "description",
+          "disabled": true,
           "settings": {}
         },
         "collapsible_tab_eVzj7R": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Rangée réductible",
+            "heading": "Description",
             "icon": "none",
-            "content": "",
+            "content": "{{ product.description }}",
             "page": ""
           }
         },
         "collapsible_tab_yRkt3j": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Rangée réductible",
+            "heading": "Bienfaits",
             "icon": "none",
-            "content": "",
+            "content": "<p>Concentré de pureté active. Huile végétale aux propriétés anti-oxydantes puissantes pour un éclat retrouvé.</p>",
             "page": ""
           }
         },
         "collapsible_tab_YQ8mLd": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Rangée réductible",
+            "heading": "Ingrédients clés",
             "icon": "none",
-            "content": "",
+            "content": "<p>Éclat et uniformité retrouvés. Cible les taches et les irrégularités de grain de peau.</p>",
             "page": ""
           }
         },
         "collapsible_tab_gY6Ybm": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Rangée réductible",
+            "heading": "Adapté aux",
             "icon": "none",
-            "content": "",
+            "content": "<p>Formulé à partir de 97 % d'ingrédients d'origine naturelle, ce sérum précieux active les mécanismes naturels de régénération cellulaire.</p>",
             "page": ""
           }
         },
@@ -160,7 +193,9 @@
             "heading": "COMPLÉTEZ VOTRE RITUEL",
             "products": [
               "lorem-ipsum",
-              "serum-precieux-regenerant"
+              "serum-precieux-regenerant",
+              "serum-precieux-regenerant-2",
+              "serum-precieux-regenerant-3"
             ],
             "show_price": true
           }
@@ -174,13 +209,16 @@
         }
       },
       "block_order": [
-        "vendor",
+        "text_XfH6Vn",
+        "product_purposes_gAzUTV",
         "title",
-        "price",
         "rating_JAYPYg",
+        "vendor",
+        "text_dyXagU",
         "variant_picker",
-        "quantity_selector",
+        "price",
         "buy_buttons",
+        "delivery_text_slider_gHzBpX",
         "description",
         "collapsible_tab_eVzj7R",
         "collapsible_tab_yRkt3j",
@@ -190,8 +228,13 @@
         "knr_upsell_cross_sell_JMYNLT",
         "share"
       ],
+      "custom_css": [
+        "@media (max-width: 749px) {{padding-top: 0px; margin-top: -1.1rem; }}"
+      ],
       "settings": {
-        "enable_sticky_info": true,
+        "enable_sticky_info": false,
+        "enable_sticky_product_details_wrapper": true,
+        "enable_sticky_add_to_cart": true,
         "color_scheme": "scheme-1",
         "media_size": "large",
         "constrain_to_viewport": true,
@@ -202,8 +245,8 @@
         "image_zoom": "lightbox",
         "hide_variants": true,
         "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 80
+        "padding_top": 8,
+        "padding_bottom": 72
       }
     },
     "image_banner_hFfz9C": {
@@ -333,7 +376,7 @@
           "settings": {
             "image": "shopify://shop_images/Product_Image_Container_a6403e74-4523-4e1d-bb91-aaf305878de7.png",
             "title": "Découvrir",
-            "block_heading_size": "h4",
+            "block_title_size": "text-medium",
             "sub_title": "01",
             "text": "<p>Concentré de pureté active. Huile végétale aux propriétés anti-oxydantes puissantes pour un éclat retrouvé.</p>",
             "block_text_size": "text-small",
@@ -346,7 +389,7 @@
           "settings": {
             "image": "shopify://shop_images/Product_Image_Container_2916b9c9-4e2a-4cf1-89e9-261ccc27b232.png",
             "title": "Découvrir",
-            "block_heading_size": "h4",
+            "block_title_size": "text-medium",
             "sub_title": "02",
             "text": "<p>Éclat et uniformité retrouvés. Cible les taches et les irrégularités de grain de peau.</p>",
             "block_text_size": "text-small",
@@ -359,7 +402,7 @@
           "settings": {
             "image": "shopify://shop_images/Product_Image_Container_0525900b-f677-4f61-94dd-3d22e0fddeb2.png",
             "title": "Découvrir",
-            "block_heading_size": "h4",
+            "block_title_size": "text-medium",
             "sub_title": "03",
             "text": "<p>Fermeté et nutrition intense. Répare la barrière cutanée et lisse les contours du visage.</p>",
             "block_text_size": "text-small",
@@ -376,6 +419,7 @@
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "How to use",
+        "no_block_paddings": false,
         "heading_size": "h2",
         "image_width": "full",
         "image_ratio": "adapt",
@@ -390,7 +434,7 @@
         "padding_top": 40,
         "padding_bottom": 120,
         "mobile_padding_top": 40,
-        "mobile_padding_bottom": 40
+        "mobile_padding_bottom": 64
       }
     },
     "knr_before_after_C7fMbm": {
@@ -412,7 +456,7 @@
         "accessibility_label": "Compare before and after images",
         "padding_top": 80,
         "padding_bottom": 80,
-        "mobile_padding_top": 40,
+        "mobile_padding_top": 64,
         "mobile_padding_bottom": 40
       }
     },
@@ -684,7 +728,7 @@
           "type": "column",
           "settings": {
             "title": "LIVRAISON OFFERTE",
-            "block_heading_size": "h5",
+            "block_title_size": "text-small",
             "sub_title": "",
             "text": "<p>Livraison offerte<br/>dès 60 € d'achat<br/>en France métropolitaine.</p>",
             "block_text_size": "text-x-small",
@@ -696,7 +740,7 @@
           "type": "column",
           "settings": {
             "title": "RETOURS GRATUITS",
-            "block_heading_size": "h5",
+            "block_title_size": "text-small",
             "sub_title": "",
             "text": "<p>Retours acceptés<br/>jusqu'à 30 jours<br/>après réception.</p>",
             "block_text_size": "text-x-small",
@@ -708,7 +752,7 @@
           "type": "column",
           "settings": {
             "title": "PAIEMENT SÉCURISÉ",
-            "block_heading_size": "h5",
+            "block_title_size": "text-small",
             "sub_title": "",
             "text": "<p>Paiement 100 % sécurisé<br/>par carte bancaire,<br/>PayPal ou virement.</p>",
             "block_text_size": "text-x-small",
@@ -720,7 +764,7 @@
           "type": "column",
           "settings": {
             "title": "SERVICE CLIENT",
-            "block_heading_size": "h5",
+            "block_title_size": "text-small",
             "sub_title": "",
             "text": "<p>Du lundi au vendredi<br/>de 9h à 18h par email<br/>et téléphone.</p>",
             "block_text_size": "text-x-small",
@@ -738,6 +782,7 @@
       "name": "knr multicolumn",
       "settings": {
         "title": "",
+        "no_block_paddings": true,
         "heading_size": "h1",
         "image_width": "full",
         "image_ratio": "adapt",
@@ -749,7 +794,7 @@
         "color_scheme": "scheme-5",
         "columns_mobile": "1",
         "swipe_on_mobile": true,
-        "padding_top": 60,
+        "padding_top": 64,
         "padding_bottom": 80,
         "mobile_padding_top": 60,
         "mobile_padding_bottom": 60

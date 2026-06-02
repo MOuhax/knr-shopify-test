@@ -321,6 +321,7 @@ padding-right: 1.5rem;
   margin-bottom: 4rem;
 }
 
+
 @media screen and (min-width: 750px) {
   .footer-block__details-content {
     margin-bottom: 2rem;
@@ -518,14 +519,16 @@ padding-right: 1.5rem;
 
 
 /* section footer custom code */
-
+.footer-block__details-content .underlined-link {
+    color: #000;
+}
 @media (max-width: 749px) {
   .footer-block--menu .footer-block__heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    padding: 1.2rem 0;
+    padding: 1.7rem 0;
     margin: 0;
     border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
     user-select: none;
@@ -549,6 +552,10 @@ padding-right: 1.5rem;
 .footer-block__details-content {
     margin-bottom: 0rem;
 }
+.footer-block__details-content.rte {
+    margin-bottom: 2.4rem;
+}
+
     .footer-block.grid__item {
         margin: 0rem 0;
     }

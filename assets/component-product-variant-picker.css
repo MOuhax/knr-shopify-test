@@ -73,7 +73,12 @@ variant-selects {
   transition: border var(--duration-short) ease;
   cursor: pointer;
   position: relative;
+
+  border: none;
+      border-radius: 0px;
+    padding: 0px 2px;
 }
+
 
 .product-form__input--pill input[type='radio'] + label:before {
   content: '';
@@ -93,8 +98,10 @@ variant-selects {
 }
 
 .product-form__input--pill input[type='radio']:checked + label {
-  background-color: rgb(var(--color-foreground));
-  color: rgb(var(--color-background));
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+    border-bottom: 1px solid #000;
+
 }
 
 @media screen and (forced-colors: active) {

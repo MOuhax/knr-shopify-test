@@ -362,6 +362,16 @@ h6,
 .rte.text-x-small, .text-x-small {
     font-size: 1.2rem;
 }
+.rte.text-small, .text-small {
+    font-size: 1.4rem;
+}
+.rte.text-medium, .text-medium {
+    font-size: 2.4rem;
+}
+.rte.text-large, .text-large {
+    font-size: 3.2rem;
+}
+
 blockquote {
   font-style: italic;
   color: rgba(var(--color-foreground), 0.75);
@@ -663,7 +673,7 @@ summary {
 
 summary .icon-caret {
   position: absolute;
-  height: 0.6rem;
+  height: 0.8rem;
   right: 1.5rem;
   top: calc(50% - 0.2rem);
 }
@@ -3624,4 +3634,31 @@ details-disclosure > details {
   100% {
     transform: translateX(100%) scaleX(0);
   }
+}
+
+/* Smooth accordion animation */
+.accordion .accordion__content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    max-height 0.4s ease,
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.accordion details[open] .accordion__content {
+  max-height: 500px; /* Increase if your content can be taller */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Rotate caret icon */
+.accordion .icon-caret {
+  transition: transform 0.4s ease;
+}
+
+.accordion details[open] .icon-caret {
+  transform: rotate(180deg);
 }

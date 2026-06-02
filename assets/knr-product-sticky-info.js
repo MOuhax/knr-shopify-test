@@ -10,26 +10,19 @@
     var info = document.querySelector('.product__info-wrapper.grid__item');
     var product = document.querySelector('.product--columns') || document.querySelector('.product');
     if (!info || !product) return;
-    console.log("info exist");
 
     if (window.innerWidth < 750) {
       info.removeAttribute('style');
       return;
     }
-console.log("more than 750");
     var stickyTop = h('.announcement-bar') + h('.header-wrapper') + gap;
     var productTop = product.getBoundingClientRect().top + window.scrollY;
     var productBottom = productTop + product.offsetHeight;
     var stopScroll = productBottom - info.offsetHeight - stickyTop;
-console.log(stickyTop);
-console.log(productBottom);
-console.log("scroll y " + scrollY);
-console.log("stop scroll " + stopScroll);
 
 
 
     if (window.scrollY >= stopScroll) {
-      console.log("stop----");
       info.style.position = 'static';
       info.style.top = 'auto';
       info.style.bottom = '0';
@@ -37,7 +30,6 @@ console.log("stop scroll " + stopScroll);
       info.style.width = '';
     } else if (window.scrollY > productTop - stickyTop) {
 
-      console.log('else ----');
       info.style.position = 'static';
       info.style.top = Math.max(stickyTop - product.getBoundingClientRect().top, 0) + 'px';
       info.style.bottom = 'auto';

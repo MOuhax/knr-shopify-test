@@ -154,6 +154,9 @@
 .background-none .multicolumn-card__info {
   padding: 1.6rem;
 }
+.multicolumn-card__info.remove-paddings {
+    padding: 0px;
+}
 
 .background-none .slider .multicolumn-card__info {
   padding-bottom: 0;
@@ -184,6 +187,9 @@
   .multicolumn.background-none .slider.slider--mobile {
     margin-bottom: 0rem;
   }
+  .background-none .slider .multicolumn-card__info.remove-paddings {
+    padding-bottom: 2rem;
+}
 }
 
 @media screen and (min-width: 750px) {

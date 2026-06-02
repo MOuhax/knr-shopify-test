@@ -80,7 +80,7 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
-  <div class="page-width">
+  <div class="page-width-padding">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
@@ -99,6 +99,9 @@
               {%- when 'text' -%}
                 <p
                   class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
+                  {% if block.settings.text_color != blank %}
+                    style="color: {{ block.settings.text_color }};"
+                  {% endif %}
                   {{ block.shopify_attributes }}
                 >
                   {{- block.settings.text -}}
@@ -214,6 +217,26 @@
                   <span class="visually-hidden">{{ 'products.product.sku' | t }}:</span>
                   {{- product.selected_or_first_available_variant.sku -}}
                 </p>
+              {%- when 'product_purposes' -%}
+                {%- assign product_purposes = product.metafields.custom.purpose.value -%}
+                {%- if product_purposes != blank -%}
+                  <div class="product__purposes" {{ block.shopify_attributes }}>
+                    {%- if block.settings.heading != blank -%}
+                      <p class="product__purposes-heading inline-richtext">
+                        {{ block.settings.heading }}
+                      </p>
+                    {%- endif -%}
+                    <ul class="product__purposes-list list-unstyled">
+                      {%- for purpose in product_purposes -%}
+                        {%- if purpose != blank -%}
+                          <li class="product__purposes-item">
+                            {{ purpose }}
+                          </li>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                {%- endif -%}
               {%- when 'custom_liquid' -%}
                 {{ block.settings.custom_liquid }}
               {%- when 'collapsible_tab' -%}
@@ -824,6 +847,11 @@
           "label": "t:sections.main-product.blocks.text.settings.text.label"
         },
         {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color"
+        },
+        {
           "type": "select",
           "id": "text_style",
           "options": [
@@ -998,6 +1026,19 @@
       "type": "description",
       "name": "t:sections.main-product.blocks.description.name",
       "limit": 1
+    },
+    {
+      "type": "product_purposes",
+      "name": "Product purposes",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Purpose",
+          "label": "Heading"
+        }
+      ]
     },
     {
       "type": "share",

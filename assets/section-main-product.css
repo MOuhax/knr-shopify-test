@@ -270,9 +270,6 @@ a.product__text {
   padding: 0rem;
 }
 
-.product .price .badge {
-  margin-bottom: 0.5rem;
-}
 
 .product .price__container {
   margin-bottom: 0.5rem;
@@ -298,7 +295,14 @@ a.product__text {
 
   .product__info-container > *:first-child {
     margin-top: 0;
+    margin-bottom: 2.4rem;
   }
+  .product__purposes {
+    margin-bottom: 2.4rem;
+}
+.product-form__input.product-form__input--pill {
+    margin-top: 4rem;
+}
 }
 
 .product__description-title {
@@ -1504,3 +1508,14 @@ a.product__text {
  .product__info-wrapper {
     background-color: rgba(var(--color-background));
   }
+  ul.product__purposes-list.list-unstyled {
+    display: flex;
+    gap: 1rem;
+}
+ul.product__purposes-list.list-unstyled .product__purposes-item {
+    text-transform: uppercase;
+    border: 1px solid #000;
+    padding: 0px 6px;
+    border-radius: 3px;
+    font-size: 1.2rem;
+}

@@ -118,12 +118,12 @@
                   </div>
                 </div>
               {%- endif -%}
-              <div class="multicolumn-card__info">
+              <div class="multicolumn-card__info {% if section.settings.no_block_paddings %}remove-paddings{% endif %}">
                 {%- if block.settings.sub_title != blank -%}
                   <p class="sub_title">{{ block.settings.sub_title }}</p>
                 {%- endif -%}
                 {%- if block.settings.title != blank -%}
-                  <h4 class="inline-richtext {{ block.settings.block_heading_size }}">{{ block.settings.title }}</h4>
+                  <h4 class="inline-richtext {{ block.settings.block_title_size }}">{{ block.settings.title }}</h4>
                 {%- endif -%}
                 {%- if block.settings.text != blank -%}
                   <div class="rte {{ block.settings.block_text_size }}">{{ block.settings.text }}</div>
@@ -191,6 +191,12 @@
       "id": "title",
       "default": "t:sections.multicolumn.settings.title.default",
       "label": "t:sections.multicolumn.settings.title.label"
+    },
+     {
+      "type": "checkbox",
+      "id": "no_block_paddings",
+      "default": false,
+      "label": "Remove block paddings"
     },
     {
       "type": "select",
@@ -424,7 +430,7 @@
         },
            {
       "type": "select",
-      "id": "block_heading_size",
+      "id": "block_title_size",
       "options": [
         {
           "value": "text-small",
